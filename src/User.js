@@ -1,6 +1,8 @@
 class User {
   constructor(userData) {
+
 // id, name, address, email, strideLength, dailyStepGoal, friends(with friend ids)
+    
   }
 
   returnFirstName() {
