@@ -1,6 +1,5 @@
-const userData = require('../data/users.js')
+// const userData = require('../data/users.js')
 const sampleData = require('../data/sample-users.js')
-
 
 class UserRepository {
   constructor(data) {
@@ -22,7 +21,7 @@ class UserRepository {
   }
 
   findAvgSleepQuality() {
-    
+
   }
 
   findBestQualitySleepers(startDate) {
