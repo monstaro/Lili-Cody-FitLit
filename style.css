@@ -9,7 +9,7 @@ header {
   color: white;
   height: 100px;
   width: 100vw;
-  background-color: rgba(2, 9, 45, 0.1);
+  background-color: rgba(2, 9, 45, 0.4);
 }
 
 .fitlit-header {
@@ -40,31 +40,31 @@ header {
 
 .hydration {
   grid-area: hydration;
-  background-color: papayawhip;
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
 }
 
 .activity {
   grid-area: activity;
-  background-color: rebeccapurple;
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
 
 .steps {
   grid-area: steps;
-  background-color: red;
+  background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
 }
 
 .sleep {
   grid-area: sleep;
-  background-color: black;
+  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
 }
 
 .trends {
   grid-area: trends;
-  background-color: yellow;
+  background-color: rgba(2, 9, 45, 0.3);
 }
 
 .scoreboard {
   grid-area: scoreboard;
-  background-color: green;
+  background-color: rgba(2, 9, 45, 0.3);
 }
 
