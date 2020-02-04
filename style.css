@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  background: rgb(34,193,195);
+  background: linear-gradient(333deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+}
+
+header {
+  display: inline-block;
+  color: white;
+  height: 100px;
+  width: 100vw;
+  background-color: rgba(2, 9, 45, 0.1);
+}
+
+.fitlit-header {
+  font-family: 'Comfortaa', cursive;
+  font-size: 2em;
+  margin-left: 30px;
+  padding-top: 25px;
+}
+
+.main-container {
+  width: 1000px;
+  margin: 50px auto;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-rows: 2fr 2fr 1fr;
+  grid-template-areas: "hydration steps scoreboard"
+                       "activity sleep scoreboard"
+                       "trends trends trends";
+}
+
+.hydration, .activity, .steps, .sleep, .trends, .scoreboard {
+  padding: 15px;
+  border-radius: 10px;
+  font-family: 'Bebas Neue', cursive;
+  font-weight: 400;
+}
+
+.hydration {
+  grid-area: hydration;
+  background-color: papayawhip;
+}
+
+.activity {
+  grid-area: activity;
+  background-color: rebeccapurple;
+}
+
+.steps {
+  grid-area: steps;
+  background-color: red;
+}
+
+.sleep {
+  grid-area: sleep;
+  background-color: black;
+}
+
+.trends {
+  grid-area: trends;
+  background-color: yellow;
+}
+
+.scoreboard {
+  grid-area: scoreboard;
+  background-color: green;
+}
+
