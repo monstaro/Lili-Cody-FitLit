@@ -10,7 +10,7 @@ class User {
   }
 
   returnFirstName() {
-
+    return this.name.split(' ')[0]
   }
 
   compareStepsWithFriend(friendID, startDate) {
