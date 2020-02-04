@@ -45,4 +45,7 @@ describe('UserRepo', function() {
       33
     ])
   })
+  it('should be able to return the users first name', () => {
+    expect(user.returnFirstName()).to.equal('Herminia')
+  })
 })
