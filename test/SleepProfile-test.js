@@ -44,10 +44,22 @@ describe('UserRepo', function() {
   });
 
   it('should be able to calculate average hours of sleep for all time', () => {
-    expect(sleep.calculateAvgHoursAllTime()).to.equal(6.5)
+    expect(sleep.calculateAvgHoursAllTime()).to.equal(6.5);
   });
 
-  it('should be able to calculate average hours of sleep for a given week', () => {
-    expect(sleep.calculateAvgHoursWeek('2019/06/15')).to.equal(6.5)
+  it('should be able to return an array of hours slept for a week', () => {
+    expect(sleep.findHoursSleptForWeek('2019/06/15')).to.deep.equal([5.4, 8.3, 5.7]);
+  });
+
+  it('should be able to calculate average sleep quality for all time', () => {
+    expect(sleep.calculateSleepQualityAllTime()).to.equal(2.9);
+  });
+
+  it('should be able to return an array of sleep quality for a week', () => {
+    expect(sleep.findSleepQualityForWeek('2019/06/15')).to.deep.equal([3, 4.5, 1.1]);
+  });
+
+  it('should be able to find hours slept for a given night', () => {
+    expect(sleep.calculateSleepQualityAllTime()).to.equal(2.9);
   });
 })
