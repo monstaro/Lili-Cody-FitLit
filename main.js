@@ -14,7 +14,8 @@ const todayQuality = document.getElementById('today-quality');
 const weekHydration = document.getElementById('week-hydration');
 const hoursWeekSleep = document.getElementById('hours-week-sleep');
 const qualityWeekSleep = document.getElementById('quality-week-sleep');
-const allTimeAvgSleep = document.getElementById('alltime-avg-sleep')
+const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
+const allTimeAvgHydration = document.getElementById('alltime-avg-hydration');
 
 const loadUser = () => {
   let random = Math.floor(Math.random()*(50));
@@ -40,19 +41,20 @@ const loadUser = () => {
   todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
   todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
   weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate)
+  
 
-  hoursWeekSleep.innerText = userSleep.findHoursSleptForWeek(lastSleepDate).map(hour => ' ' + hour + 'hrs')
+  hoursWeekSleep.innerText = userSleep.findHoursSleptForWeek(lastSleepDate).map(hour => ' ' + hour + ' hrs');
 
-  qualityWeekSleep.innerText = userSleep.findSleepQualityForWeek(lastSleepDate).map(quality => ' ' + quality + '/5 Quality')
+  qualityWeekSleep.innerText = userSleep.findSleepQualityForWeek(lastSleepDate).map(quality => ' ' + quality + '/5 Quality');
 
 
-  weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate).map(date => ' ' + date + 'oz')
+  weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate).map(date => ' ' + date + ' oz.');
 
-  allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + 'hours - '
+  allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - '
  +
-  userSleep.calculateSleepQualityAllTime() + '/5 quality'
+  userSleep.calculateSleepQualityAllTime() + '/5 quality';
 
-
+  allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.'
 
 }
 
