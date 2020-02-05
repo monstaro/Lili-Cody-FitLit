@@ -15,13 +15,13 @@ class SleepProfile {
   findDateRange(startDate) {
     const firstDate = new Date(startDate);
     const addWeek = () => {
-      return new Date(firstDate.getTime() + 7*24*60*60*1000)
+      return new Date(firstDate.getTime() + 7 * 24 * 60 * 60 * 1000)
     }
     const endDate = addWeek();
     const datesInRange = this.entries.filter(entry => {
       const entryDate = new Date(entry.date);
       return firstDate <= entryDate && entryDate < endDate;
-    })
+    });
     return datesInRange;
   }
 
