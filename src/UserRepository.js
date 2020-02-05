@@ -4,7 +4,6 @@
 class UserRepository {
   constructor(data) {
     this.data = data
-
   }
 
   getUserData(id) {

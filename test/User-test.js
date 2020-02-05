@@ -10,7 +10,7 @@ let userRepo;
 let user;
 let data;
 
-describe('UserRepo', function() {
+describe('User', function() {
   beforeEach(() => {
     userRepo = new UserRepository(sampleUsers)
     data = userRepo.getUserData(3)
