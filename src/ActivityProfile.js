@@ -1,6 +1,6 @@
 class ActivityProfile {
   constructor(userID) {
-// entries, user profile
+    
   }
 
   findMilesWalked(date) {
@@ -29,6 +29,10 @@ class ActivityProfile {
 // Use reduce and Math.max to find the highest stair count
 // Use find to return the object of that activity
 // Return the activity.date and highest stair count
+  }
+
+  findLastEntry() {
+    return this.entries[this.entries.length - 1].numOunces;
   }
 
   findMonthlyAvgs(month) {
