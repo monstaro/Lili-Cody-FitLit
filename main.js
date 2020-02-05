@@ -11,10 +11,14 @@ const avgStepSpan = document.getElementById('avg-step-goal');
 const todaySleep = document.getElementById('today-sleep');
 const todayHydration = document.getElementById('today-hydration');
 const todayQuality = document.getElementById('today-quality');
+const weekHydration = document.getElementById('week-hydration');
+const hoursWeekSleep = document.getElementById('hours-week-sleep');
+const qualityWeekSleep = document.getElementById('quality-week-sleep');
+const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
+const allTimeAvgHydration = document.getElementById('alltime-avg-hydration');
 
 const loadUser = () => {
   let random = Math.floor(Math.random()*(50));
-//We are getting a 'UserRepository is not defined' error on the line below
   const userRepo = new UserRepository(userData);
   const user = new User(userRepo.getUserData(random));
   const friends = user.friends.map(friendID => {
@@ -36,6 +40,22 @@ const loadUser = () => {
   todaySleep.innerText = userSleep.findHoursSlept(lastSleepDate);
   todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
   todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
+  weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate)
+  
+
+  hoursWeekSleep.innerText = userSleep.findHoursSleptForWeek(lastSleepDate).map(hour => ' ' + hour + ' hrs');
+
+  qualityWeekSleep.innerText = userSleep.findSleepQualityForWeek(lastSleepDate).map(quality => ' ' + quality + '/5 Quality');
+
+
+  weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate).map(date => ' ' + date + ' oz.');
+
+  allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - '
+ +
+  userSleep.calculateSleepQualityAllTime() + '/5 quality';
+
+  allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.'
+
 }
 
 loadUser();

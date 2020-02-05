@@ -12,7 +12,7 @@ let user;
 let userData;
 let sleep;
 
-describe('UserRepo', function() {
+describe('SleepProfile', function() {
   beforeEach(() => {
     userRepo = new UserRepository(sampleUsers);
     userData = userRepo.getUserData(4);
@@ -48,15 +48,15 @@ describe('UserRepo', function() {
   });
 
   it('should be able to return an array of hours slept for a week', () => {
-    expect(sleep.findHoursSleptForWeek('2019/06/15')).to.deep.equal([5.4, 8.3, 5.7]);
+    expect(sleep.findHoursSleptForWeek('2019/06/17')).to.deep.equal([5.4, 8.3, 5.7]);
   });
 
   it('should be able to calculate average sleep quality for all time', () => {
     expect(sleep.calculateSleepQualityAllTime()).to.equal(2.9);
   });
 
-  it('should be able to return an array of entries for a week given a start date', () => {
-    expect(sleep.findDateRange('2019/06/15')).to.deep.equal([
+  it('should be able to return an array of entries for a week given an end date', () => {
+    expect(sleep.findDateRange('2019/06/17')).to.deep.equal([
       { userID: 4, date: '2019/06/15', hoursSlept: 5.4, sleepQuality: 3 },
       { userID: 4, date: '2019/06/16', hoursSlept: 8.3, sleepQuality: 4.5 },
       { userID: 4, date: '2019/06/17', hoursSlept: 5.7, sleepQuality: 1.1 }
@@ -64,7 +64,7 @@ describe('UserRepo', function() {
   });
 
   it('should be able to return an array of sleep quality for a week', () => {
-    expect(sleep.findSleepQualityForWeek('2019/06/15')).to.deep.equal([3, 4.5, 1.1]);
+    expect(sleep.findSleepQualityForWeek('2019/06/17')).to.deep.equal([3, 4.5, 1.1]);
   });
 
   it('should be able to find hours slept for a given night', () => {
