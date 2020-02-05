@@ -15,18 +15,16 @@ class HydrationProfile {
     return this.entries.find(drinker => drinker.date === date).numOunces
   }
 
-  findOzForWeek(startDate) {
-    const firstDate = new Date(startDate)
-    console.log(firstDate)
-    const addWeek = () => {
-      return new Date(firstDate.getTime() + 7 * 24 * 60 * 60 * 1000)
-    };
-    const lastDate = addWeek();
+  findOzForWeek(endDate) {
+    const lastDate = new Date(endDate);
+    const subtractWeek = () => {
+      return new Date(lastDate.getTime() - (7 * 24 * 60 * 60 * 1000))
+    }
+    const firstDate = subtractWeek();
     const datesInRange = this.entries.filter(entry => {
       const entryDate = new Date(entry.date);
-      return firstDate <= entryDate && entryDate < lastDate;
-    })
-    console.log(datesInRange)
+      return firstDate < entryDate && entryDate <= lastDate;
+    });
     return datesInRange.map(date => date.numOunces)
   }
 
