@@ -1,6 +1,8 @@
-class Sleep {
+
+
+class SleepProfile {
   constructor(userID) {
-//entries
+    this.entries =
   }
 
   calculateAvgHoursAllTime() {
@@ -24,7 +26,7 @@ class Sleep {
   }
 
   findSleepQuality(date) {
-    
+
   }
 }
 
