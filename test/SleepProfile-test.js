@@ -74,4 +74,8 @@ describe('UserRepo', function() {
   it('should be able to find sleep quality for a given night', () => {
     expect(sleep.findSleepQuality('2019/06/17')).to.equal(1.1);
   });
+
+  it('should be able to return the latest entry', () => {
+    expect(sleep.findLastEntry()).to.equal('2019/06/17');
+  });
 })
