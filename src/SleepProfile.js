@@ -55,6 +55,10 @@ class SleepProfile {
     const specificEntry = this.entries.find(entry => entry.date === date);
     return specificEntry.sleepQuality;
   }
+
+  findLastEntry() {
+    return this.entries[this.entries.length - 1].date;
+  }
 }
 
 if (typeof module !== 'undefined') {
