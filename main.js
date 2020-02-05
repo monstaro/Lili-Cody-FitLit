@@ -7,6 +7,7 @@ const emailSpan = document.getElementById('email');
 const strideSpan = document.getElementById('stride-length');
 const stepGoalSpan = document.getElementById('step-goal');
 const friendsSpan = document.getElementById('friends');
+const avgStepSpan = document.getElementById('avg-step-goal');
 
 const loadUser = () => {
   let random = Math.floor(Math.random()*(50));
@@ -24,6 +25,7 @@ const loadUser = () => {
   strideSpan.innerText = user.strideLength;
   stepGoalSpan.innerText = user.dailyStepGoal;
   friendsSpan.innerText = friends.join(', ');
+  avgStepSpan.innerText = userRepo.findAvgStepGoal();
 }
 
 loadUser();
