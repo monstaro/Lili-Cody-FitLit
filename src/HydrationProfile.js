@@ -1,5 +1,5 @@
-const sampleHydration = require ('../data/sample-hydration.js')
-const sampleUsers = require('../data/sample-users.js')
+// const sampleHydration = require ('../data/sample-hydration.js')
+// const sampleUsers = require('../data/sample-users.js')
 
 // const hydrationData = require('../data/hydration.js')
 
@@ -38,6 +38,10 @@ class HydrationProfile {
     })
     console.log(datesInRange)
     return datesInRange.map(date => date.numOunces)
+  }
+
+  findLastEntry() {
+    return this.entries[this.entries.length - 1].date;
   }
 }
 
