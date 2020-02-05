@@ -9,14 +9,14 @@ const SleepProfile = require ('../src/SleepProfile.js');
 
 let userRepo;
 let user;
-let data;
+let userData;
 let sleep;
 
 describe('UserRepo', function() {
   beforeEach(() => {
     userRepo = new UserRepository(sampleUsers);
-    data = userRepo.getUserData(4);
-    user = new User(data);
+    userData = userRepo.getUserData(4);
+    user = new User(userData);
     sleep = new SleepProfile(user.id, sampleSleep);
   })
 
@@ -53,6 +53,14 @@ describe('UserRepo', function() {
 
   it('should be able to calculate average sleep quality for all time', () => {
     expect(sleep.calculateSleepQualityAllTime()).to.equal(2.9);
+  });
+
+  it('should be able to return an array of entries for a week given a start date', () => {
+    expect(sleep.findDateRange('2019/06/15')).to.deep.equal([
+      { userID: 4, date: '2019/06/15', hoursSlept: 5.4, sleepQuality: 3 },
+      { userID: 4, date: '2019/06/16', hoursSlept: 8.3, sleepQuality: 4.5 },
+      { userID: 4, date: '2019/06/17', hoursSlept: 5.7, sleepQuality: 1.1 }
+    ]);
   });
 
   it('should be able to return an array of sleep quality for a week', () => {
