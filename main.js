@@ -24,6 +24,7 @@ const loadUser = () => {
   const userHydration = new HydrationProfile(random, hydrationData);
   const userSleep = new SleepProfile(random, sleepData);
   const lastSleepDate = userSleep.findLastEntry();
+  const lastHydroDate = userHydration.findLastEntry();
   console.log(user.returnFirstName())
   userSpan.innerText = user.returnFirstName();
   addressSpan.innerText = user.address;
@@ -34,6 +35,7 @@ const loadUser = () => {
   avgStepSpan.innerText = userRepo.findAvgStepGoal();
   todaySleep.innerText = userSleep.findHoursSlept(lastSleepDate);
   todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
+  todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
 }
 
 loadUser();
