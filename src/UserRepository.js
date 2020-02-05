@@ -1,5 +1,5 @@
 // const userData = require('../data/users.js')
-const sampleData = require('../data/sample-users.js')
+// const sampleData = require('../data/sample-users.js')
 
 class UserRepository {
   constructor(data) {
@@ -9,15 +9,15 @@ class UserRepository {
 
   getUserData(id) {
     //replace with userData
-    return sampleData.find(user => user.id === id)
+    return this.data.find(user => user.id === id)
   }
 
   findAvgStepGoal() {
-    let average = sampleData.reduce((acc, cur) => {
+    let average = this.data.reduce((acc, cur) => {
       acc += cur.dailyStepGoal
-      return acc
+      return acc;
     }, 0)
-    return (average / sampleData.length)
+    return (average / this.data.length)
   }
 
   findAvgSleepQuality() {
