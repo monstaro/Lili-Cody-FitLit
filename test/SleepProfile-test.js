@@ -60,6 +60,10 @@ describe('UserRepo', function() {
   });
 
   it('should be able to find hours slept for a given night', () => {
-    expect(sleep.calculateSleepQualityAllTime()).to.equal(2.9);
+    expect(findHoursSlept('2019/06/17')).to.equal(5.7);
+  });
+
+  it('should be able to find sleep quality for a given night', () => {
+    expect(findSleepQuality('2019/06/17')).to.equal(1.1);
   });
 })
