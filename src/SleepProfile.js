@@ -12,16 +12,38 @@ class SleepProfile {
     return Math.round(avg * 10) / 10;
   }
 
-  calculateAvgHoursWeek(startDate) {
-    
+  findDateRange(startDate) {
+    const firstDate = new Date(startDate);
+    const addWeek = () => {
+      return new Date(firstDate.getTime() + 7*24*60*60*1000)
+    }
+    const endDate = addWeek();
+    const datesInRange = this.entries.filter(entry => {
+      const entryDate = new Date(entry.date);
+      return firstDate <= entryDate && entryDate < endDate;
+    })
+    return datesInRange;
+  }
+
+  findHoursSleptForWeek(startDate) {
+    const datesInRange = this.findDateRange(startDate);
+    const sleeps = datesInRange.map(date => date.hoursSlept);
+    return sleeps;
   }
 
   calculateSleepQualityAllTime() {
-
+    const totalSleepQuality = this.entries.reduce((acc, entry) => {
+      acc += entry.sleepQuality;
+      return acc;
+    }, 0);
+    const avg = totalSleepQuality / this.entries.length;
+    return Math.round(avg * 10) / 10;
   }
 
-  calculateSleepQualityWeek() {
-
+  findSleepQualityForWeek(startDate) {
+    const datesInRange = this.findDateRange(startDate);
+    const qualities = datesInRange.map(date => date.sleepQuality);
+    return qualities;
   }
 
   findHoursSlept(date) {
