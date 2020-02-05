@@ -8,17 +8,19 @@ const User = require ('../src/User.js')
 const UserRepository = require ('../src/UserRepository.js')
 
 let userRepo;
+let userData
 let user;
 let data;
 let hydration;
 
 
+
 describe('Hydration', function() {
   beforeEach(() => {
     userRepo = new UserRepository(sampleUsers)
-    data = userRepo.getUserData(4)
-    user = new User(data)
-    hydration = new Hydration(user.id)
+    userData = userRepo.getUserData(4)
+    user = new User(userData)
+    hydration = new Hydration(user.id, sampleHydration)
   })
   it('should be a function', () => {
     expect(Hydration).to.be.a('function');
@@ -32,7 +34,7 @@ describe('Hydration', function() {
   it('should use an id and date to determine how much fluid was dranken that day', () => {
     expect(hydration.findOzConsumed("2019/06/15")).to.equal(85)
   })
-  it('should take in a date and determine the average fl oz of that week', () => {
-    expect(hydration.calculateWeekAvg("2019/06/15")).to.equal(74)
+  it('should take in a date and determine the amount of oz of that week', () => {
+    expect(hydration.findOzForWeek("2019/06/15")).to.deep.equal([ 85, 95, 82, 93, 21, 95, 91 ])
   })
 })
