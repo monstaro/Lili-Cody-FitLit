@@ -8,17 +8,19 @@ const User = require ('../src/User.js')
 const UserRepository = require ('../src/UserRepository.js')
 
 let userRepo;
+let userData
 let user;
 let data;
 let hydration;
 
 
+
 describe('Hydration', function() {
   beforeEach(() => {
     userRepo = new UserRepository(sampleUsers)
-    data = userRepo.getUserData(4)
-    user = new User(data)
-    hydration = new Hydration(user.id)
+    userData = userRepo.getUserData(4)
+    user = new User(userData)
+    hydration = new Hydration(user.id, sampleHydration)
   })
   it('should be a function', () => {
     expect(Hydration).to.be.a('function');

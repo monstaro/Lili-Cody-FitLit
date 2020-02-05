@@ -5,34 +5,38 @@ const sampleUsers = require('../data/sample-users.js')
 
 
 class HydrationProfile {
-  constructor(userid) {
+  constructor(userid, data) {
     this.id = userid
+    this.entries = data.filter(user => user.userID === this.id)
   }
 
   calculateAllTimeOzAvg() {
-    let usersOunces = sampleHydration.filter(drinker => drinker.userID === this.id);
-
-    return Math.floor(usersOunces.reduce((acc, cur) => {
+    // let usersOunces = sampleHydration.filter(drinker => drinker.userID === this.id);
+    return Math.floor(this.entries.reduce((acc, cur) => {
       acc += cur.numOunces;
       return acc
-    }, 0) / usersOunces.length)
+    }, 0) / this.entries.length)
   }
 
   findOzConsumed(date) {
     // Filter entries array for specific date
     // Reduce those ounces to one return value
 
-    return sampleHydration.filter(drinker => drinker.userID === this.id).find(drinker => drinker.date === date).numOunces
+    return this.entries.find(drinker => drinker.date === date).numOunces
   }
 
   calculateWeekAvg(startDate) {
     // Filter for date startDate < x < startDate + 7 (a week later)
     // Reduce to get avg
-    let matchId = sampleHydration.filter(drinker => drinker.userID === this.id);
-    return Math.floor(matchId.reduce((acc, cur) => {
+
+    // take startDate and create an array that increments the day 7 times
+
+    const firstDate = new Date(startDate)
+    console.log(firstDate)
+    return Math.floor(this.entries.reduce((acc, cur) => {
       acc += cur.numOunces
       return acc
-    }, 0) / matchId.length)
+    }, 0) / this.entries.length)
   }
 }
 

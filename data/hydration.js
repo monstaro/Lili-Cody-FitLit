@@ -1500,31 +1500,6 @@ const hydrationData = [
     "numOunces": 71
   },
   {
-    "userID": 1,
-    "date": "2019/06/21",
-    "numOunces": 50
-  },
-  {
-    "userID": 2,
-    "date": "2019/06/21",
-    "numOunces": 27
-  },
-  {
-    "userID": 3,
-    "date": "2019/06/21",
-    "numOunces": 41
-  },
-  {
-    "userID": 4,
-    "date": "2019/06/21",
-    "numOunces": 91
-  },
-  {
-    "userID": 5,
-    "date": "2019/06/21",
-    "numOunces": 73
-  },
-  {
     "userID": 6,
     "date": "2019/06/21",
     "numOunces": 90
