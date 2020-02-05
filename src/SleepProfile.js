@@ -47,11 +47,13 @@ class SleepProfile {
   }
 
   findHoursSlept(date) {
-
+    const specificEntry = this.entries.find(entry => entry.date === date);
+    return specificEntry.hoursSlept;
   }
 
   findSleepQuality(date) {
-
+    const specificEntry = this.entries.find(entry => entry.date === date);
+    return specificEntry.sleepQuality;
   }
 }
 
