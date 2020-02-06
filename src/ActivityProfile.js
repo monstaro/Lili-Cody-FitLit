@@ -1,6 +1,7 @@
 class ActivityProfile {
   constructor(user, data) {
     this.user = user
+    this.data = data;
     this.entries = data.filter(user => user.userID === this.user.id)
   }
   findLastEntry() {
@@ -32,25 +33,36 @@ class ActivityProfile {
       const entryDate = new Date(entry.date);
       return firstDate < entryDate && entryDate <= lastDate;
     });
-    return datesInRange.reduce((acc, day) => {
+    return Math.round(datesInRange.reduce((acc, day) => {
       acc += day.minutesActive
       return acc
-    }, 0) / datesInRange.length
+    }, 0) / datesInRange.length)
   }
 
   findIfStepGoalMet(date) {
-
+    return this.findSteps(date) >= this.user.dailyStepGoal ? true : false
   }
 
   findDaysGoalExceeded() {
-    // Filter entries by this.numSteps > user.stepGoal (get goal objects)
-    // Map goal objects to return a dates array
+    return this.entries.filter(entry => entry.numSteps > this.user.dailyStepGoal).map(goodDay => goodDay.date)
   }
 
   findStairRecord() {
-    // Use reduce and Math.max to find the highest stair count
-    // Use find to return the object of that activity
-    // Return the activity.date and highest stair count
+
+
+    let stairRecord = this.entries.sort((a, b) => b.flightsOfStairs - a.flightsOfStairs)
+    return stairRecord[0]
+
+      //we can use this to return both the date and stair count on the DOM
+  }
+  findAllUsersStairClimbAvg(date) {
+    
+    let dates = this.data.filter(a => a.date === date)
+    return Math.round(dates.reduce((acc, cur) => {
+        acc += cur.flightsOfStairs
+      return acc
+    }, 0) / dates.length);
+    // let newEntries = 
   }
 }
 
