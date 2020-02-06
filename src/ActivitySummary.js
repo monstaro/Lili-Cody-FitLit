@@ -3,47 +3,71 @@ class ActivitySummary {
     this.data = data;
   }
 
-    findMonthlyAvgs(month) {
-      const monthEntries = this.data.map(entry => {
-        entry.date = entry.date.slice(5, 7);
-        return entry;
-      });
-      const filteredMonthEntries = monthEntries.filter(entry => {
-        return entry.date = month;
-      });
-      const avg = (metric) => {
-        const average = filteredMonthEntries.reduce((acc, entry) => {
-          acc += entry[metric];
-          return acc;
-        }, 0) / filteredMonthEntries.length
-        return Math.round(average);
-      };
-      const monthAvgs = filteredMonthEntries.reduce((acc, entry) => {
-        acc.avgSteps = avg('numSteps');
-        acc.avgMins = avg('minutesActive');
-        acc.avgStairs = avg('flightsOfStairs');
+  findMonthlyAvgs(month) {
+    const filteredMonthEntries = this.data.filter(entry => {
+      return entry.date.slice(5, 7) === month;
+    });
+    const avg = (metric) => {
+      const average = filteredMonthEntries.reduce((acc, entry) => {
+        acc += entry[metric];
         return acc;
-      }, {});
-      return monthAvgs;
+      }, 0) / filteredMonthEntries.length
+      return Math.round(average);
+    };
+    const monthAvgs = filteredMonthEntries.reduce((acc, entry) => {
+      acc.month = month;
+      acc.avgSteps = avg('numSteps');
+      acc.avgMins = avg('minutesActive');
+      acc.avgStairs = avg('flightsOfStairs');
+      return acc;
+    }, {});
+    return monthAvgs;
+  }
+//
+  findAllMonths() {
+    const allMonths = [];
+    this.data.forEach(entry => {
+      const month = entry.date.slice(5, 7);
+      if (allMonths.indexOf(month) === -1) {
+        allMonths.push(month);
       }
+    });
+    return allMonths;
+  }
 
-      showStepTrends() {
-    // Filter entry[i - 1].steps  < entry[i].steps < entry[i + 1].steps returns true
-    // Filter for those entries
-    // From [i - 1] to [i + 1], you increased steps every day!
-      }
+  showStepTrends() {
+// Filter entry[i - 1].steps  < entry[i].steps < entry[i + 1].steps returns true
+// Filter for those entries
+// From [i - 1] to [i + 1], you increased steps every day!
+  }
 
-      findBestStepsMonth() {
-    // We added this method.
-    // Find monthly averages for June - Sept (since that’s the only data we have)
-    // Find Math.max of those
-    // Return that month
-      }
+  findBestStepsMonth() {
+    const allMonths = this.findAllMonths();
+    const monthAvgs = allMonths.map(month => {
+      return this.findMonthlyAvgs(month);
+    });
+    const bestSteps = monthAvgs.reduce((acc, avg) => {
+      return Math.max(acc, avg.avgSteps);
+    }, 0);
+    const bestMonth = monthAvgs.find(avg => {
+      return avg.avgSteps === bestSteps;
+    })
+    return bestMonth.month;
+  }
 
-      findWorstStepsMonth() {
-    // We added this method.
-    // Same as above but with Math.min
-      }
+  findWorstStepsMonth() {
+    const allMonths = this.findAllMonths();
+    const monthAvgs = allMonths.map(month => {
+      return this.findMonthlyAvgs(month);
+    });
+    const worstSteps = monthAvgs.reduce((acc, avg) => {
+      return Math.min(acc, avg.avgSteps);
+    }, 10000);
+    const worstMonth = monthAvgs.find(avg => {
+      return avg.avgSteps === worstSteps;
+    })
+    return worstMonth.month;
+  }
 }
 
 
