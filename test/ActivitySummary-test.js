@@ -22,9 +22,18 @@ describe('ActivityProfile', function() {
 
   it('should be able to return an object of all sleep averages for a month', () => {
     expect(activitySum.findMonthlyAvgs('06')).to.deep.equal({
+      month: '06',
       avgSteps: 7980,
       avgMins: 160,
       avgStairs: 22
     });
   });
+
+  it ('should be able to find the best steps months', () =>  {
+    expect(activitySum.findBestStepsMonth()).to.equal('06');
+  })
+
+  it ('should be able to find the worst steps months', () =>  {
+    expect(activitySum.findWorstStepsMonth()).to.equal('06');
+  })
 });
