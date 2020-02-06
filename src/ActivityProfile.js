@@ -12,12 +12,10 @@ class ActivityProfile {
     let numMiles = totalFt / 5280;
     return Math.round((numMiles + Number.EPSILON) * 100) / 100
   }
-  findStepsToday() {
-    return this.entries.find(entry => entry.date === this.findLastEntry()).numSteps
+  findSteps(date) {
+    return this.entries.find(entry => entry.date === date).numSteps
   }
-  findMinsActiveToday() {
-    return this.entries.find(entry => entry.date === this.findLastEntry()).minutesActive
-  }
+
   findMinutesActive(date) {
     return this.entries.find(entry => entry.date === date).minutesActive
   }

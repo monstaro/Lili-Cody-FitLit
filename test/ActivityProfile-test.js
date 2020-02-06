@@ -32,13 +32,10 @@ describe('ActivityProfile', function() {
   it('should find the minutes active on a certain day', () => {
     expect(activityProfile.findMinutesActive('2019/06/16')).to.equal(175)
   })
-  it('should return the steps taken today', () => {
-    expect(activityProfile.findStepsToday()).to.equal(14329)
+  it('should return the steps taken on a date', () => {
+    expect(activityProfile.findSteps('2019/06/17')).to.equal(14329)
   })
   it('should find the lastest entry', function () {
     expect(activityProfile.findLastEntry()).to.equal("2019/06/17")
-  })
-  it('should find the minutes active for today', () => {
-    expect(activityProfile.findMinsActiveToday()).to.equal(168)
   })
 })
