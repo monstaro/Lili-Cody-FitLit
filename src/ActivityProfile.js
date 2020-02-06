@@ -1,15 +1,18 @@
 class ActivityProfile {
-  constructor(userID) {
-    
+  constructor(user, data) {
+    this.user = user
+    this.entries = data.filter(user => user.userID === this.user.id)
   }
 
   findMilesWalked(date) {
-// user.strideLength (ft) * steps = totalFt
-// totalFt / 5280 = number of miles (round to two decimal places)
+    let walkDay = this.entries.find(entry => entry.date === date);
+    let totalFt = this.user.strideLength * walkDay.numSteps;
+    let numMiles = totalFt / 5280;
+    return Math.round((numMiles + Number.EPSILON) * 100) / 100
   }
 
   findMinutesActive(date) {
-
+    let day = this.entries.find(entry => entry.date === date)
   }
 
   findAvgMinActiveWeek(startDate) {
