@@ -30,7 +30,7 @@ describe('ActivityProfile', function() {
   });
 
   it ('should be able to find the best steps months', () =>  {
-    expect(activitySum.findBestStepsMonth()).to.equal('06');
+    expect(activitySum.findBestStepsMonth()).to.equal('08');
   })
 
   it ('should be able to find the worst steps months', () =>  {
