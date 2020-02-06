@@ -1,6 +1,3 @@
-// const userData = require('./data/users.js');
-// const User = require ('./src/User.js');
-// const UserRepository = require ('./src/UserRepository.js');
 const userSpan = document.getElementById('user-name');
 const addressSpan = document.getElementById('address');
 const emailSpan = document.getElementById('email');
@@ -16,9 +13,10 @@ const hoursWeekSleep = document.getElementById('hours-week-sleep');
 const qualityWeekSleep = document.getElementById('quality-week-sleep');
 const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
 const allTimeAvgHydration = document.getElementById('alltime-avg-hydration');
+const stepsToday = document.getElementById('today-steps')
 
 const loadUser = () => {
-  let random = Math.floor(Math.random()*(50));
+  let random = Math.floor(Math.random() * (50));
   const userRepo = new UserRepository(userData);
   const user = new User(userRepo.getUserData(random));
   const friends = user.friends.map(friendID => {
@@ -27,9 +25,10 @@ const loadUser = () => {
   });
   const userHydration = new HydrationProfile(random, hydrationData);
   const userSleep = new SleepProfile(random, sleepData);
-  const lastSleepDate = userSleep.findLastEntry();
+  const userActivity = new ActivityProfile(user, activityData)
   const lastHydroDate = userHydration.findLastEntry();
-  console.log(user.returnFirstName())
+  const lastSleepDate = userSleep.findLastEntry();
+  const lastStepDate = userActivity.findLastEntry();
   userSpan.innerText = user.returnFirstName();
   addressSpan.innerText = user.address;
   emailSpan.innerText = user.email;
@@ -41,6 +40,8 @@ const loadUser = () => {
   todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
   todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
   weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate)
+  stepsToday.innerText = userActivity.findStepsToday() + ' steps'
+
   
 
   hoursWeekSleep.innerText = userSleep.findHoursSleptForWeek(lastSleepDate).map(hour => ' ' + hour + ' hrs');
