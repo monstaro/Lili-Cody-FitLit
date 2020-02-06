@@ -36,7 +36,7 @@ describe('ActivityProfile', function() {
     expect(activityProfile.findSteps('2019/06/17')).to.equal(14329)
   })
   it('should find the lastest entry', function () {
-    expect(activityProfile.findLastEntry()).to.equal("2019/06/22")
+    expect(activityProfile.findLastEntry()).to.equal("2019/08/24")
   })
   it('should find avg mins active for given week', () => {
     expect(activityProfile.findAvgMinActiveWeek('2019/06/21')).to.equal(171
@@ -46,12 +46,18 @@ describe('ActivityProfile', function() {
     expect(activityProfile.findIfStepGoalMet('2019/06/21')).to.equal(false)
   })
   it('should find all the days the user exceeded their step goal', () => {
-    expect(activityProfile.findDaysGoalExceeded()).to.deep.equal(['2019/06/17', '2019/06/20', '2019/06/22'])
+    expect(activityProfile.findDaysGoalExceeded()).to.deep.equal(['2019/06/17', '2019/06/20', '2019/06/22', '2019/08/24'])
   })
   it('should find their all time stair climbing record', () => {
     expect(activityProfile.findStairRecord().flightsOfStairs).to.equal(36)
   })
   it('should return the avg stairs climbed of all users on a specific date', () => {
     expect(activityProfile.findAllUsersStairClimbAvg('2019/06/17', userRepo)).to.equal(15)
+  })
+  it('should return the avg steps of all users on a specific date', () => {
+    expect(activityProfile.findAllUsersStepsTaken('2019/06/17', userRepo)).to.equal(10781)
+  })
+  it('should return the avg mins active of all users on a specific date', () => {
+    expect(activityProfile.findAllUsersMinsActive('2019/06/17', userRepo)).to.equal(111)
   })
 })
