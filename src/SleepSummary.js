@@ -2,15 +2,20 @@ class SleepSummary {
   constructor(data) {
     this.data = data;
   }
-  findAvgSleepQuality() {
 
+  findAvgSleepQuality() {
+    const total = this.data.reduce((acc, entry) => {
+      acc += entry.sleepQuality;
+      return acc;
+    }, 0);
+    const avg = total / this.data.length;
+    return Math.round(avg * 10) / 10;
   }
 
   findBestQualitySleepers(endDate) {
     // Filter by dates (startDate + next 7 days)
     // Create an array of objects for all sleep averages for that week using reduce {userId: , sleepQualityAvg: }
     // Filter again for sleepQualityAvg > 3
-
   }
 
   findWorstQualitySleepers(endDate) {
