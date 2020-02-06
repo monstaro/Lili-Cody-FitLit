@@ -25,6 +25,7 @@ class HydrationProfile {
       const entryDate = new Date(entry.date);
       return firstDate < entryDate && entryDate <= lastDate;
     });
+    console.log(datesInRange.map(date => date.numOunces))
     return datesInRange.map(date => date.numOunces)
   }
 

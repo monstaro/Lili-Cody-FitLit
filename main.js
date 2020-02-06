@@ -29,7 +29,7 @@ const loadUser = () => {
   const userActivity = new ActivityProfile(user, activityData)
   const lastHydroDate = userHydration.findLastEntry();
   const lastSleepDate = userSleep.findLastEntry();
-  const lastStepDate = userActivity.findLastEntry();
+  const lastActivityDate = userActivity.findLastEntry();
   userSpan.innerText = user.returnFirstName();
   addressSpan.innerText = user.address;
   emailSpan.innerText = user.email;
@@ -41,8 +41,8 @@ const loadUser = () => {
   todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
   todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
   weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate)
-  stepsToday.innerText = userActivity.findStepsToday() + ' steps'
-  activityToday.innerText = userActivity.findMinsActiveToday() + ' minutes'
+  stepsToday.innerText = userActivity.findSteps(lastActivityDate) + ' steps'
+  activityToday.innerText = userActivity.findMinutesActive(lastActivityDate) + ' minutes'
 
   
 
