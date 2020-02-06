@@ -12,6 +12,19 @@ class SleepSummary {
     return Math.round(avg * 10) / 10;
   }
 
+  findDateRange(endDate) {
+    const lastDate = new Date(endDate);
+    const subtractWeek = () => {
+      return new Date(lastDate.getTime() - (7 * 24 * 60 * 60 * 1000))
+    }
+    const firstDate = subtractWeek();
+    const datesInRange = this.data.filter(entry => {
+      const entryDate = new Date(entry.date);
+      return firstDate < entryDate && entryDate <= lastDate;
+    });
+    return datesInRange;
+  }
+
   findBestQualitySleepers(endDate) {
     // Filter by dates (startDate + next 7 days)
     // Create an array of objects for all sleep averages for that week using reduce {userId: , sleepQualityAvg: }
