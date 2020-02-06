@@ -23,7 +23,7 @@ class ActivitySummary {
     }, {});
     return monthAvgs;
   }
-//
+
   findAllMonths() {
     const allMonths = [];
     this.data.forEach(entry => {
@@ -33,12 +33,6 @@ class ActivitySummary {
       }
     });
     return allMonths;
-  }
-
-  showStepTrends() {
-// Filter entry[i - 1].steps  < entry[i].steps < entry[i + 1].steps returns true
-// Filter for those entries
-// From [i - 1] to [i + 1], you increased steps every day!
   }
 
   findBestStepsMonth() {
@@ -51,7 +45,7 @@ class ActivitySummary {
     }, 0);
     const bestMonth = monthAvgs.find(avg => {
       return avg.avgSteps === bestSteps;
-    })
+    });
     return bestMonth.month;
   }
 
@@ -62,10 +56,10 @@ class ActivitySummary {
     });
     const worstSteps = monthAvgs.reduce((acc, avg) => {
       return Math.min(acc, avg.avgSteps);
-    }, 10000);
+    }, 100000);
     const worstMonth = monthAvgs.find(avg => {
       return avg.avgSteps === worstSteps;
-    })
+    });
     return worstMonth.month;
   }
 }
