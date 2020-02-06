@@ -25,10 +25,36 @@ class SleepSummary {
     return datesInRange;
   }
 
+  findAllSleepAvgs(endDate) {
+    const datesInRange = this.findDateRange(endDate);
+    const condensed = {};
+    datesInRange.forEach(entry => {
+      if (!condensed[entry.userID]) {
+        condensed[entry.userID] = [entry.sleepQuality];
+      } else {
+        condensed[entry.userID].push(entry.sleepQuality);
+      }
+    });
+    const condensedKeys = Object.keys(condensed);
+    condensedKeys.forEach(key => {
+      const total = condensed[key].reduce((acc, val) => {
+        acc += val;
+        return acc;
+      }, 0);
+      const avg = total / condensed[key].length
+      condensed[key] = Math.round(avg * 10) / 10;
+    })
+    return condensed;
+  }
+
   findBestQualitySleepers(endDate) {
-    // Filter by dates (startDate + next 7 days)
-    // Create an array of objects for all sleep averages for that week using reduce {userId: , sleepQualityAvg: }
-    // Filter again for sleepQualityAvg > 3
+    const condensed = this.findAllSleepAvgs(endDate);
+    const condensedKeys = Object.keys(condensed);
+    const bestSleepers = condensedKeys.filter(key => {
+      return condensed[key] > 3;
+    })
+    const bestSleeperIds = bestSleepers.map(sleeper => parseInt(sleeper));
+    return bestSleeperIds;
   }
 
   findWorstQualitySleepers(endDate) {
