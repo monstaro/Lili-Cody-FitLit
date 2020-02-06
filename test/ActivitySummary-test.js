@@ -29,6 +29,10 @@ describe('ActivityProfile', function() {
     });
   });
 
+  it('should be able to return an array of all of the months it has data for', () => {
+    expect(activitySum.findAllMonths()).to.deep.equal([ '06', '08' ])
+  });
+
   it ('should be able to find the best steps months', () =>  {
     expect(activitySum.findBestStepsMonth()).to.equal('08');
   })
