@@ -19,8 +19,23 @@ class ActivityProfile {
   findMinutesActive(date) {
     return this.entries.find(entry => entry.date === date).minutesActive
   }
-  findAvgMinActiveWeek(startDate) {
+
+  findAvgMinActiveWeek(endDate) {
     
+    const lastDate = new Date(endDate);
+    
+    const subtractWeek = () => {
+      return new Date(lastDate.getTime() - (7 * 24 * 60 * 60 * 1000))
+    }
+    const firstDate = subtractWeek();
+    const datesInRange = this.entries.filter(entry => {
+      const entryDate = new Date(entry.date);
+      return firstDate < entryDate && entryDate <= lastDate;
+    });
+    return datesInRange.reduce((acc, day) => {
+      acc += day.minutesActive
+      return acc
+    }, 0) / datesInRange.length
   }
 
   findIfStepGoalMet(date) {

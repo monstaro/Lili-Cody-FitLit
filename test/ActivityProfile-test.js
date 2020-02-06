@@ -36,6 +36,10 @@ describe('ActivityProfile', function() {
     expect(activityProfile.findSteps('2019/06/17')).to.equal(14329)
   })
   it('should find the lastest entry', function () {
-    expect(activityProfile.findLastEntry()).to.equal("2019/06/17")
+    expect(activityProfile.findLastEntry()).to.equal("2019/06/22")
+  })
+  it('should find avg mins active for given week', () => {
+    expect(activityProfile.findAvgMinActiveWeek('2019/06/21')).to.equal(171.14
+    )
   })
 })
