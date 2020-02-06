@@ -26,7 +26,7 @@ describe('ActivityProfile', function() {
   it('should find the miles walked on a certain date', () => {
     expect(activitySummary.findMilesWalked('2019/06/15')).to.equal(2.91)
   })
-  it('should find the minutes active on a certaun day', () => {
-    expect(activitySummary.findMinutesActive('2019/06/16')).to.equal(220)
+  it('should find the minutes active on a certain day', () => {
+    expect(activitySummary.findMinutesActive('2019/06/16')).to.equal(175)
   })
 })

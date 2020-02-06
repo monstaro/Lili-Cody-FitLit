@@ -12,11 +12,11 @@ class ActivityProfile {
   }
 
   findMinutesActive(date) {
-    let day = this.entries.find(entry => entry.date === date)
+   return this.entries.find(entry => entry.date === date).minutesActive
   }
 
   findAvgMinActiveWeek(startDate) {
-
+    
   }
 
   findIfStepGoalMet(date) {
