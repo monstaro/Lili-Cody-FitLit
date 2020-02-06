@@ -10,23 +10,32 @@ const ActivityProfile = require ('../src/ActivityProfile.js')
 let userRepo;
 let user;
 let userData;
-let activitySummary;
+let activityProfile;
 
 describe('ActivityProfile', function() {
   beforeEach(() => {
     userRepo = new UserRepository(sampleUsers);
     userData = userRepo.getUserData(1);
     user = new User(userData);
-    activitySummary = new ActivityProfile(user, sampleActivity);
+    activityProfile = new ActivityProfile(user, sampleActivity);
   })
 
   it('should be a function', () => {
     expect(ActivityProfile).to.be.a('function');
   });
+  // it('should contain the entries', () => {
+  //   expect(activityProfile.entries).length
+  // })
   it('should find the miles walked on a certain date', () => {
-    expect(activitySummary.findMilesWalked('2019/06/15')).to.equal(2.91)
+    expect(activityProfile.findMilesWalked('2019/06/15')).to.equal(2.91)
   })
   it('should find the minutes active on a certain day', () => {
-    expect(activitySummary.findMinutesActive('2019/06/16')).to.equal(175)
+    expect(activityProfile.findMinutesActive('2019/06/16')).to.equal(175)
+  })
+  it('should return the steps taken today', () => {
+    expect(activityProfile.findStepsToday()).to.equal(14329)
+  })
+  it('should find the lastest entry', function () {
+    expect(activityProfile.findLastEntry()).to.equal("2019/06/17")
   })
 })
