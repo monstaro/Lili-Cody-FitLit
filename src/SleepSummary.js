@@ -58,8 +58,13 @@ class SleepSummary {
   }
 
   findWorstQualitySleepers(endDate) {
-    // We added this method
-    // Potentially, time permitting, we could give these people sleep suggestions/docs in their areas
+    const condensed = this.findAllSleepAvgs(endDate);
+    const condensedKeys = Object.keys(condensed);
+    const worstSleepers = condensedKeys.filter(key => {
+      return condensed[key] < 3;
+    })
+    const worstSleeperIds = worstSleepers.map(sleeper => parseInt(sleeper));
+    return worstSleeperIds;
   }
 
   findLongestSleeper(date) {
