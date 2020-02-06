@@ -68,8 +68,11 @@ class SleepSummary {
   }
 
   findLongestSleeper(date) {
-    // Use reduce and Math.max to find the highest sleep number
-    // Use filter to find the users who hit that sleep number
+    const dateEntries = this.data.filter(entry => entry.date === date);
+    const longestTime = dateEntries.reduce((acc, entry) => {
+      return Math.max(acc, entry.hoursSlept)
+    }, 0)
+    return dateEntries.filter(entry => entry.hoursSlept === longestTime);
   }
 }
 
