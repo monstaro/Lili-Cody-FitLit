@@ -38,4 +38,7 @@ describe('ActivityProfile', function() {
   it('should find the lastest entry', function () {
     expect(activityProfile.findLastEntry()).to.equal("2019/06/17")
   })
+  it('should find the minutes active for today', () => {
+    expect(activityProfile.findMinsActiveToday()).to.equal(168)
+  })
 })

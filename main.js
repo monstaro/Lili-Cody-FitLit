@@ -14,6 +14,7 @@ const qualityWeekSleep = document.getElementById('quality-week-sleep');
 const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
 const allTimeAvgHydration = document.getElementById('alltime-avg-hydration');
 const stepsToday = document.getElementById('today-steps')
+const activityToday = document.getElementById('today-activity')
 
 const loadUser = () => {
   let random = Math.floor(Math.random() * (50));
@@ -41,6 +42,7 @@ const loadUser = () => {
   todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
   weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate)
   stepsToday.innerText = userActivity.findStepsToday() + ' steps'
+  activityToday.innerText = userActivity.findMinsActiveToday() + ' minutes'
 
   
 
