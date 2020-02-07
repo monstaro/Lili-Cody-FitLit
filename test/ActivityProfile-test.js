@@ -51,13 +51,7 @@ describe('ActivityProfile', function() {
   it('should find their all time stair climbing record', () => {
     expect(activityProfile.findStairRecord().flightsOfStairs).to.equal(36)
   })
-  it('should return the avg stairs climbed of all users on a specific date', () => {
-    expect(activityProfile.findAllUsersStairClimbAvg('2019/06/17', userRepo)).to.equal(15)
-  })
-  it('should return the avg steps of all users on a specific date', () => {
-    expect(activityProfile.findAllUsersStepsTaken('2019/06/17', userRepo)).to.equal(10781)
-  })
-  it('should return the avg mins active of all users on a specific date', () => {
-    expect(activityProfile.findAllUsersMinsActive('2019/06/17', userRepo)).to.equal(111)
-  })
+
+
+
 })

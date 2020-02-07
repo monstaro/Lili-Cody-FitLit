@@ -1,7 +1,6 @@
 class ActivityProfile {
   constructor(user, data) {
     this.user = user
-    this.data = data;
     this.entries = data.filter(user => user.userID === this.user.id)
   }
   findLastEntry() {
@@ -22,9 +21,9 @@ class ActivityProfile {
   }
 
   findAvgMinActiveWeek(endDate) {
-    
+
     const lastDate = new Date(endDate);
-    
+
     const subtractWeek = () => {
       return new Date(lastDate.getTime() - (7 * 24 * 60 * 60 * 1000))
     }
@@ -48,35 +47,16 @@ class ActivityProfile {
   }
 
   findStairRecord() {
-
-
     let stairRecord = this.entries.sort((a, b) => b.flightsOfStairs - a.flightsOfStairs)
     return stairRecord[0]
-
       //we can use this to return both the date and stair count on the DOM
   }
-  findAllUsersStairClimbAvg(date) {
-    
-    let dates = this.data.filter(a => a.date === date)
-    return Math.round(dates.reduce((acc, cur) => {
-        acc += cur.flightsOfStairs
-      return acc
-    }, 0) / dates.length);
-    // let newEntries = 
-  }
-  findAllUsersStepsTaken(date) {
-    let dates = this.data.filter(a => a.date === date)
-    return Math.round(dates.reduce((acc, cur) => {
-        acc += cur.numSteps
-      return acc
-    }, 0) / dates.length);
-  }
-  findAllUsersMinsActive(date) {
-    let dates = this.data.filter(a => a.date === date)
-    return Math.round(dates.reduce((acc, cur) => {
-        acc += cur.minutesActive
-      return acc
-    }, 0) / dates.length);
+
+  findThreeDayTrends() {
+    this.entries.filter((entry, i) => {
+      return entry.steps > entry[i -1].steps;
+    })
+    return
   }
 }
 
