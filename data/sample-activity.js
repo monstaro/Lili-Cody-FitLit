@@ -278,11 +278,79 @@ const sampleActivity = [
     "numSteps": 10643,
     "minutesActive": 213,
     "flightsOfStairs": 37
+  },
+  {
+    "userID": 1,
+    "date": "2019/08/23",
+    "numSteps": 8213,
+    "minutesActive": 122,
+    "flightsOfStairs": 27
+  },
+  {
+    "userID": 2,
+    "date": "2019/08/23",
+    "numSteps": 14908,
+    "minutesActive": 257,
+    "flightsOfStairs": 47
+  },
+  {
+    "userID": 3,
+    "date": "2019/08/23",
+    "numSteps": 7792,
+    "minutesActive": 212,
+    "flightsOfStairs": 7
+  },
+  {
+    "userID": 4,
+    "date": "2019/08/23",
+    "numSteps": 9314,
+    "minutesActive": 140,
+    "flightsOfStairs": 30
+  },
+  {
+    "userID": 5,
+    "date": "2019/08/23",
+    "numSteps": 8277,
+    "minutesActive": 258,
+    "flightsOfStairs": 25
+  },
+  {
+    "userID": 1,
+    "date": "2019/08/24",
+    "numSteps": 11654,
+    "minutesActive": 270,
+    "flightsOfStairs": 19
+  },
+  {
+    "userID": 2,
+    "date": "2019/08/24",
+    "numSteps": 5426,
+    "minutesActive": 214,
+    "flightsOfStairs": 15
+  },
+  {
+    "userID": 3,
+    "date": "2019/08/24",
+    "numSteps": 4062,
+    "minutesActive": 259,
+    "flightsOfStairs": 22
+  },
+  {
+    "userID": 4,
+    "date": "2019/08/24",
+    "numSteps": 7481,
+    "minutesActive": 229,
+    "flightsOfStairs": 9
+  },
+  {
+    "userID": 5,
+    "date": "2019/08/24",
+    "numSteps": 11499,
+    "minutesActive": 47,
+    "flightsOfStairs": 7
   }
 ]
-
-
-
 if (typeof module !== 'undefined') {
   module.exports = sampleActivity;
 }
+
