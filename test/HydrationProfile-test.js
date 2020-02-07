@@ -35,7 +35,7 @@ describe('Hydration', function() {
     expect(hydration.findOzConsumed("2019/06/15")).to.equal(85)
   })
   it('should take in a date and determine the amount of oz of that week', () => {
-    expect(hydration.findOzForWeek("2019/06/15")).to.deep.equal([ 85, 95, 82, 93, 21, 95, 91 ])
+    expect(hydration.findOzForWeek("2019/06/21")).to.deep.equal([ 85, 95, 82, 93, 21, 95, 91 ])
   })
   it('should be able to return the latest entry', () => {
     expect(hydration.findLastEntry()).to.equal('2019/06/22');
