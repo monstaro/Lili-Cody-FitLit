@@ -75,9 +75,9 @@ const highestStepper = youAndFriends.find(friend => friend.totalSteps === highes
 console.log(highestSteps);
 
 const friendTrendStatements = youAndFriends.map(friend => {
-  return `${friend.name} had <span class="stepnum">${friend.totalSteps}</span> steps`;
+  return `${friend.name} had <span class="step-num">${friend.totalSteps}</span> steps`;
 });
 
 friendTrends.innerHTML = `<p>This week, ${friendTrendStatements.join(', ')}.</p>`
 topSteps.innerHTML = `<p>The person with the highest number of steps this week was
-${highestStepper.name} with <span class="stepnum">${highestStepper.totalSteps}</span> steps</p>`
+${highestStepper.name} with <span class="step-num">${highestStepper.totalSteps}</span> steps</p>`
