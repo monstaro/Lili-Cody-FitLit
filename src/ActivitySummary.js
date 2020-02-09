@@ -62,6 +62,30 @@ class ActivitySummary {
     });
     return worstMonth.month;
   }
+
+  findAllUsersStairClimbAvg(date) {
+    let dates = this.data.filter(a => a.date === date)
+    return Math.round(dates.reduce((acc, cur) => {
+        acc += cur.flightsOfStairs
+      return acc
+    }, 0) / dates.length);
+  }
+
+  findAllUsersStepsTaken(date) {
+    let dates = this.data.filter(a => a.date === date)
+    return Math.round(dates.reduce((acc, cur) => {
+        acc += cur.numSteps
+      return acc
+    }, 0) / dates.length);
+  }
+
+  findAllUsersMinsActive(date) {
+    let dates = this.data.filter(a => a.date === date)
+    return Math.round(dates.reduce((acc, cur) => {
+        acc += cur.minutesActive
+      return acc
+    }, 0) / dates.length);
+  }
 }
 
 

@@ -72,6 +72,10 @@ header {
   background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
 }
 
+.step-num {
+  color: #f00;
+}
+
 .sleep {
   grid-area: sleep;
   background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
