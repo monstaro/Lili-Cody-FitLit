@@ -13,52 +13,71 @@ const hoursWeekSleep = document.getElementById('hours-week-sleep');
 const qualityWeekSleep = document.getElementById('quality-week-sleep');
 const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
 const allTimeAvgHydration = document.getElementById('alltime-avg-hydration');
-const stepsToday = document.getElementById('today-steps')
-const activityToday = document.getElementById('today-activity')
+const stepsToday = document.getElementById('today-steps');
+const activityToday = document.getElementById('today-activity');
+const friendTrends = document.getElementById('friend-trends');
+const topSteps = document.getElementById('highest-steps');
 
-const loadUser = () => {
-  let random = Math.floor(Math.random() * (50));
-  const userRepo = new UserRepository(userData);
-  const user = new User(userRepo.getUserData(random));
-  const friends = user.friends.map(friendID => {
-    let friend = new User(userRepo.getUserData(friendID));
-    return friend.returnFirstName();
-  });
-  const userHydration = new HydrationProfile(random, hydrationData);
-  const userSleep = new SleepProfile(random, sleepData);
-  const userActivity = new ActivityProfile(user, activityData)
-  const lastHydroDate = userHydration.findLastEntry();
-  const lastSleepDate = userSleep.findLastEntry();
-  const lastActivityDate = userActivity.findLastEntry();
-  userSpan.innerText = user.returnFirstName();
-  addressSpan.innerText = user.address;
-  emailSpan.innerText = user.email;
-  strideSpan.innerText = user.strideLength;
-  stepGoalSpan.innerText = user.dailyStepGoal;
-  friendsSpan.innerText = friends.join(', ');
-  avgStepSpan.innerText = userRepo.findAvgStepGoal();
-  todaySleep.innerText = userSleep.findHoursSlept(lastSleepDate);
-  todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
-  todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
-  weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate)
-  stepsToday.innerText = userActivity.findSteps(lastActivityDate) + ' steps'
-  activityToday.innerText = userActivity.findMinutesActive(lastActivityDate) + ' minutes'
+let random = Math.floor(Math.random() * (50));
+const userRepo = new UserRepository(userData);
+const user = new User(userRepo.getUserData(random));
+const friends = user.friends.map(friendID => {
+  return friend = new User(userRepo.getUserData(friendID));
+});
+const friendNames = friends.map(friend => {
+  return friend.returnFirstName();
+});
+const friendActivities = friends.map(friend => {
+  return new ActivityProfile(friend, activityData);
+})
+const userHydration = new HydrationProfile(random, hydrationData);
+const userSleep = new SleepProfile(random, sleepData);
+const userActivity = new ActivityProfile(user, activityData);
+const lastHydroDate = userHydration.findLastEntry();
+const lastSleepDate = userSleep.findLastEntry();
+const lastActivityDate = userActivity.findLastEntry();
 
-  
+userSpan.innerText = user.returnFirstName();
+addressSpan.innerText = user.address;
+emailSpan.innerText = user.email;
+strideSpan.innerText = user.strideLength;
+stepGoalSpan.innerText = user.dailyStepGoal;
+friendsSpan.innerText = friendNames.join(', ');
+avgStepSpan.innerText = userRepo.findAvgStepGoal();
+todaySleep.innerText = userSleep.findHoursSlept(lastSleepDate);
+todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
+todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
+weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate)
+stepsToday.innerText = userActivity.findSteps(lastActivityDate) + ' steps'
+activityToday.innerText = userActivity.findMinutesActive(lastActivityDate) + ' minutes'
+hoursWeekSleep.innerText = userSleep.findHoursSleptForWeek(lastSleepDate).map(hour => ' ' + hour + ' hrs');
+qualityWeekSleep.innerText = userSleep.findSleepQualityForWeek(lastSleepDate).map(quality => ' ' + quality + '/5 Quality');
+weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate).map(date => ' ' + date + ' oz.');
+allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - ' +
+userSleep.calculateSleepQualityAllTime() + '/5 quality';
+allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.'
 
-  hoursWeekSleep.innerText = userSleep.findHoursSleptForWeek(lastSleepDate).map(hour => ' ' + hour + ' hrs');
-
-  qualityWeekSleep.innerText = userSleep.findSleepQualityForWeek(lastSleepDate).map(quality => ' ' + quality + '/5 Quality');
-
-
-  weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate).map(date => ' ' + date + ' oz.');
-
-  allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - '
- +
-  userSleep.calculateSleepQualityAllTime() + '/5 quality';
-
-  allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.'
-
+const yourTotalSteps = {
+  name: 'you',
+  totalSteps: userActivity.showTotalStepsForWeek(lastActivityDate)
 }
+const friendTotalSteps = friendActivities.map(act => {
+  return {
+    name: act.user.returnFirstName(),
+    totalSteps: act.showTotalStepsForWeek(lastActivityDate)
+  }
+});
+const youAndFriends = [yourTotalSteps, ...friendTotalSteps];
+const highestSteps = youAndFriends.reduce((acc, friend) => {
+  return Math.max(acc, friend.totalSteps);
+}, 0);
+const highestStepper = youAndFriends.find(friend => friend.totalSteps === highestSteps);
+console.log(highestSteps);
 
-loadUser();
+const friendTrendStatements = youAndFriends.map(friend => {
+  return `${friend.name} had <span class="stepnum">${friend.totalSteps}</span> steps`;
+});
+
+friendTrends.innerHTML = `<p>This week, ${friendTrendStatements.join(', ')}.</p>`
+topSteps.innerHTML = `<p>The person with the highest number of steps this week was
+${highestStepper.name} with <span class="stepnum">${highestStepper.totalSteps}</span> steps</p>`
