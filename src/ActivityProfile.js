@@ -52,11 +52,22 @@ class ActivityProfile {
       //we can use this to return both the date and stair count on the DOM
   }
 
-  findThreeDayTrends() {
-    this.entries.filter((entry, i) => {
-      return entry.steps > entry[i -1].steps;
-    })
-    return
+  findThreeDayTrends(activity) {
+    let start = 0;
+    const trends = [];
+
+    for (let current = 1; current < this.entries.length; current++) {
+      const prevEntry = this.entries[current - 1];
+      const currEntry = this.entries[current];
+
+      if (currEntry[activity] < prevEntry[activity] && current - start >= 3) {
+        trends.push([this.entries[start].date, currEntry.date]);
+        start = current;
+      } else if (currEntry[activity] < prevEntry[activity] && current - start < 3) {
+        start = current;
+      }
+    }
+    return trends;
   }
 }
 
