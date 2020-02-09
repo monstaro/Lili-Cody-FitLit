@@ -79,7 +79,7 @@ activityMinsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(da
 
 compareStepsToday.innerText = userActivity.compareStepsToAllUsers(lastActivityDate)
 
-compareMinsToday.innerText = userActivity.compareMinsActiveToAllUsers(lastActivityDate)
+compareMinsToday.innerText = (userActivity.compareMinsActiveToAllUsers(lastActivityDate) + userActivity.compareFlightsClimbedToAllUsers(lastActivityDate))
 
 
 

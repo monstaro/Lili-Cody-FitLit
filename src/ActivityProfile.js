@@ -22,6 +22,10 @@ class ActivityProfile {
     return this.entries.find(entry => entry.date === date).minutesActive
   }
 
+  findFlightsClimbed(date) {
+    return this.entries.find(entry => entry.date === date).flightsOfStairs
+  }
+
   findDateRange(endDate) {
     const lastDate = new Date(endDate);
     const subtractWeek = () => {
@@ -104,7 +108,18 @@ class ActivityProfile {
     }, []).sort((a, b) => b - a)
     let userActivityIndex = allUserMins.indexOf(this.findMinutesActive(date))
     let totalUsers = allUserMins.length
-    return `You placed ${userActivityIndex + 1} out of ${totalUsers} for minutes active today!`
+    return `You placed ${userActivityIndex + 1} out of ${totalUsers} for minutes active today and `
+  }
+  compareFlightsClimbedToAllUsers(date) {
+    let allFlightsClimbed = this.data.filter(entry => {
+      return entry.date === date
+    }).reduce((acc, cur) => {
+        acc.push(cur.flightsOfStairs)
+      return acc
+    }, []).sort((a, b) => b - a)
+    let userFlightIndex = allFlightsClimbed.indexOf(this.findFlightsClimbed(date))
+    let totalUsers = allFlightsClimbed.length
+    return `${userFlightIndex + 1} out of ${totalUsers} for flights climbed!`
   }
 }
 
