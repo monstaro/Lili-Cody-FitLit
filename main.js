@@ -15,6 +15,7 @@ const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
 const allTimeAvgHydration = document.getElementById('alltime-avg-hydration');
 const stepsToday = document.getElementById('today-steps');
 const stepsWeek = document.getElementById('week-steps');
+const stairsWeek = document.getElementById('week-stairs');
 const activityToday = document.getElementById('today-activity');
 const friendTrends = document.getElementById('friend-trends');
 const topSteps = document.getElementById('highest-steps');
@@ -61,6 +62,8 @@ allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
 milesToday.innerText = userActivity.findMilesWalked(lastActivityDate) + ' miles';
 
 stepsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.numSteps + ' steps')
+
+stairsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' flights climbed')
 
 console.log(userActivity.findDateRange(lastActivityDate))
 
