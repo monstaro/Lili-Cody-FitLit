@@ -6,7 +6,7 @@ const sampleActivity = require ('../data/sample-activity.js');
 const UserRepository = require ('../src/UserRepository.js');
 const ActivitySummary = require ('../src/ActivitySummary.js');
 
-describe('ActivityProfile', function() {
+describe('ActivitySummary', function() {
   beforeEach(() => {
     userRepo = new UserRepository(sampleUsers);
     activitySum = new ActivitySummary(sampleActivity);
@@ -42,14 +42,14 @@ describe('ActivityProfile', function() {
   });
 
   it('should return the avg stairs climbed of all users on a specific date', () => {
-    expect(activityProfile.findAllUsersStairClimbAvg('2019/06/17', userRepo)).to.equal(15)
+    expect(activitySum.findAllUsersStairClimbAvg('2019/06/17', userRepo)).to.equal(15)
   });
 
   it('should return the avg steps of all users on a specific date', () => {
-    expect(activityProfile.findAllUsersStepsTaken('2019/06/17', userRepo)).to.equal(10781)
+    expect(activitySum.findAllUsersStepsTaken('2019/06/17', userRepo)).to.equal(10781)
   });
 
   it('should return the avg mins active of all users on a specific date', () => {
-    expect(activityProfile.findAllUsersMinsActive('2019/06/17', userRepo)).to.equal(111)
+    expect(activitySum.findAllUsersMinsActive('2019/06/17', userRepo)).to.equal(111)
   });
 });
