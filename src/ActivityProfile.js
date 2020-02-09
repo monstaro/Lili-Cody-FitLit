@@ -1,7 +1,8 @@
 class ActivityProfile {
   constructor(user, data) {
-    this.user = user
-    this.entries = data.filter(user => user.userID === this.user.id)
+    this.user = user;
+    this.entries = data.filter(user => user.userID === this.user.id);
+    this.friends = user.friends;
   }
   findLastEntry() {
     return this.entries[this.entries.length - 1].date
@@ -20,10 +21,8 @@ class ActivityProfile {
     return this.entries.find(entry => entry.date === date).minutesActive
   }
 
-  findAvgMinActiveWeek(endDate) {
-
+  findDateRange(endDate) {
     const lastDate = new Date(endDate);
-
     const subtractWeek = () => {
       return new Date(lastDate.getTime() - (7 * 24 * 60 * 60 * 1000))
     }
@@ -32,6 +31,11 @@ class ActivityProfile {
       const entryDate = new Date(entry.date);
       return firstDate < entryDate && entryDate <= lastDate;
     });
+    return datesInRange;
+  }
+
+  findAvgMinActiveWeek(endDate) {
+    const datesInRange = this.findDateRange(endDate);
     return Math.round(datesInRange.reduce((acc, day) => {
       acc += day.minutesActive
       return acc
@@ -68,6 +72,15 @@ class ActivityProfile {
       }
     }
     return trends;
+  }
+
+  showTotalStepsForWeek(endDate) {
+    const datesInRange = this.findDateRange(endDate);
+    const totalSteps = datesInRange.reduce((acc, entry) => {
+      acc += entry.numSteps;
+      return acc;
+    }, 0);
+    return totalSteps;
   }
 }
 
