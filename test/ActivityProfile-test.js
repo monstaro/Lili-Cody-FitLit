@@ -52,6 +52,8 @@ describe('ActivityProfile', function() {
     expect(activityProfile.findStairRecord().flightsOfStairs).to.equal(36)
   })
 
-
-
+  it('should return any trends where their steps increase for at least three days', () => {
+    expect(activityProfile.findThreeDayTrends('numSteps')).to.deep.equal([['2019/06/15', '2019/06/18'],
+    ['2019/06/18', '2019/06/21']])
+  });
 })
