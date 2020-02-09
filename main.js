@@ -17,6 +17,7 @@ const stepsToday = document.getElementById('today-steps');
 const activityToday = document.getElementById('today-activity');
 const friendTrends = document.getElementById('friend-trends');
 const topSteps = document.getElementById('highest-steps');
+const milesToday = document.getElementById('today-miles')
 
 let random = Math.floor(Math.random() * (50));
 const userRepo = new UserRepository(userData);
@@ -55,7 +56,10 @@ qualityWeekSleep.innerText = userSleep.findSleepQualityForWeek(lastSleepDate).ma
 weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate).map(date => ' ' + date + ' oz.');
 allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - ' +
 userSleep.calculateSleepQualityAllTime() + '/5 quality';
-allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.'
+allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
+
+milesToday.innerText = userActivity.findMilesWalked(lastActivityDate) + ' miles'
+
 
 const yourTotalSteps = {
   name: 'you',
