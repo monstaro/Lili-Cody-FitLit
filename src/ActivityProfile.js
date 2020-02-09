@@ -1,6 +1,7 @@
 class ActivityProfile {
   constructor(user, data) {
     this.user = user;
+    this.data = data;
     this.entries = data.filter(user => user.userID === this.user.id);
     this.friends = user.friends;
   }
@@ -81,6 +82,29 @@ class ActivityProfile {
       return acc;
     }, 0);
     return totalSteps;
+  }
+  compareStepsToAllUsers(date) {
+    let allUserSteps = this.data.filter(entry => {
+      return entry.date === date
+    }).reduce((acc, cur) => {
+        acc.push(cur.numSteps)
+      return acc
+    }, []).sort((a, b) => b - a)
+    let userStepIndex = allUserSteps.indexOf(this.findSteps(date))
+    let totalUsers = allUserSteps.length
+
+    return `Out of ${totalUsers} users, you had step count number ${userStepIndex + 1}!`
+  }
+  compareMinsActiveToAllUsers(date) {
+    let allUserMins = this.data.filter(entry => {
+      return entry.date === date
+    }).reduce((acc, cur) => {
+        acc.push(cur.minutesActive)
+      return acc
+    }, []).sort((a, b) => b - a)
+    let userActivityIndex = allUserMins.indexOf(this.findMinutesActive(date))
+    let totalUsers = allUserMins.length
+    return `You placed ${userActivityIndex + 1} out of ${totalUsers} for minutes active today!`
   }
 }
 
