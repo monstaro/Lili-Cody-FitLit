@@ -98,7 +98,7 @@ class ActivityProfile {
     let userStepIndex = allUserSteps.indexOf(this.findSteps(date))
     let totalUsers = allUserSteps.length
 
-    return `Out of ${totalUsers} users, you had step count number ${userStepIndex + 1}!`
+    return `Step Ranking: ${userStepIndex + 1} / ${totalUsers} users!`
   }
   compareMinsActiveToAllUsers(date) {
     let allUserMins = this.data.filter(entry => {
@@ -109,7 +109,7 @@ class ActivityProfile {
     }, []).sort((a, b) => b - a)
     let userActivityIndex = allUserMins.indexOf(this.findMinutesActive(date))
     let totalUsers = allUserMins.length
-    return `You placed ${userActivityIndex + 1} out of ${totalUsers} for minutes active today and `
+    return `Active Mins Ranking: ${userActivityIndex + 1} / ${totalUsers} users!`
   }
   compareFlightsClimbedToAllUsers(date) {
     let allFlightsClimbed = this.data.filter(entry => {
@@ -120,7 +120,7 @@ class ActivityProfile {
     }, []).sort((a, b) => b - a)
     let userFlightIndex = allFlightsClimbed.indexOf(this.findFlightsClimbed(date))
     let totalUsers = allFlightsClimbed.length
-    return `${userFlightIndex + 1} out of ${totalUsers} for flights climbed!`
+    return `Stair Ranking: ${userFlightIndex + 1} / ${totalUsers} users!`
   }
 }
 
