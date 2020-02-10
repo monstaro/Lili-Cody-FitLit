@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>FitLit</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./style.css">
@@ -54,9 +54,10 @@
 
       <section class="sleep">
         <h1 class="box-title">Sleep</h1>
-        <p class="today">Today: <span id="today-sleep"></span> hrs, <span id="today-quality"></span> / 10 Quality</p>
-        <p class="this-week">Hours This Week: <span id="hours-week-sleep"></span></p>
-        <p class="this-week">Quality This Week: <span id="quality-week-sleep"></span></p>
+        <canvas id="sleep-chart"></canvas>
+        <p class="today">Today: <span id="today-sleep"></span> hrs, <span id="today-quality"></span> / 5 Quality</p>
+        <!-- <p class="this-week">Hours This Week: <span id="hours-week-sleep"></span></p>
+        <p class="this-week">Quality This Week: <span id="quality-week-sleep"></span></p> -->
         <p class="all-time-avg">All Time Average: <span id="alltime-avg-sleep"></span></p>
       </section>
 
@@ -91,6 +92,7 @@
     <script src="./src/HydrationProfile.js"></script>
     <script src="./src/SleepProfile.js"></script>
     <script src="./src/ActivityProfile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="./main.js"></script>
   </body>
 </html>
