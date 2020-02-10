@@ -67,8 +67,8 @@ stepsToday.innerText = userActivity.findSteps(lastActivityDate) + ' steps';
 
 
 activityToday.innerText = userActivity.findMinutesActive(lastActivityDate) + ' minutes';
-hoursWeekSleep.innerText = userSleep.findHoursSleptForWeek(lastSleepDate).map(hour => ' ' + hour + ' hrs');
-qualityWeekSleep.innerText = userSleep.findSleepQualityForWeek(lastSleepDate).map(quality => ' ' + quality + '/5 Quality');
+// hoursWeekSleep.innerText = userSleep.findHoursSleptForWeek(lastSleepDate).map(hour => ' ' + hour + ' hrs');
+// qualityWeekSleep.innerText = userSleep.findSleepQualityForWeek(lastSleepDate).map(quality => ' ' + quality + '/5 Quality');
 weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate).map(date => ' ' + date + ' oz.');
 allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - ' +
 userSleep.calculateSleepQualityAllTime() + '/5 quality';
@@ -139,3 +139,40 @@ const displayIncreases = (activity) => {
 stepTrends.innerText = displayIncreases('numSteps');
 stairTrends.innerText = displayIncreases('flightsOfStairs');
 minsTrends.innerText = displayIncreases('minutesActive');
+
+console.log(userSleep.findHoursSleptForWeek(lastSleepDate))
+
+var sleepChart = document.getElementById('sleep-chart').getContext('2d');
+var chart = new Chart(sleepChart, {
+    type: 'line',
+
+    data: {
+        labels: userSleep.findDateRange(lastSleepDate).map(entry => entry.date.slice(5)),
+        datasets: [{
+            label: 'hours slept',
+            borderColor: 'rgb(255, 99, 132)',
+            data: userSleep.findHoursSleptForWeek(lastSleepDate),
+            yAxisID: 'hours-axis'
+        },
+        {
+            label: 'sleep quality',
+            borderColor: '#4facfe',
+            data: userSleep.findSleepQualityForWeek(lastSleepDate),
+            yAxisID: 'quality-axis'
+        }]
+    },
+
+    options: {
+      scales: {
+       yAxes: [{
+           id: 'hours-axis',
+           type: 'linear',
+           position: 'left'
+         }, {
+           id: 'quality-axis',
+           type: 'linear',
+           position: 'right'
+         }]
+      }
+    }
+});
