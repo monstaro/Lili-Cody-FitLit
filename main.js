@@ -19,6 +19,7 @@ const stairsWeek = document.getElementById('week-stairs');
 const activityMinsWeek = document.getElementById('week-activity-mins');
 const compareStepsToday = document.getElementById('compare-steps');
 const compareMinsToday = document.getElementById('compare-mins-active')
+const compareFlightsToday = document.getElementById('compare-flights')
 
 const activityToday = document.getElementById('today-activity');
 const stepTrends = document.getElementById('step-trends');
@@ -81,9 +82,10 @@ stairsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => 
 
 activityMinsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' minutes');
 
-compareStepsToday.innerText = userActivity.compareStepsToAllUsers(lastActivityDate)
+compareStepsToday.innerText = userActivity.compareStepsToAllUsers(lastActivityDate);
 
-compareMinsToday.innerText = (userActivity.compareMinsActiveToAllUsers(lastActivityDate) + userActivity.compareFlightsClimbedToAllUsers(lastActivityDate))
+compareMinsToday.innerText = userActivity.compareMinsActiveToAllUsers(lastActivityDate);
+compareFlightsToday.innerText = userActivity.compareFlightsClimbedToAllUsers(lastActivityDate);
 
 
 
@@ -140,10 +142,8 @@ stepTrends.innerText = displayIncreases('numSteps');
 stairTrends.innerText = displayIncreases('flightsOfStairs');
 minsTrends.innerText = displayIncreases('minutesActive');
 
-console.log(userSleep.findHoursSleptForWeek(lastSleepDate))
-
-var sleepChart = document.getElementById('sleep-chart').getContext('2d');
-var chart = new Chart(sleepChart, {
+const sleepChart = document.getElementById('sleep-chart').getContext('2d');
+var sleepChartData = new Chart(sleepChart, {
     type: 'line',
 
     data: {
