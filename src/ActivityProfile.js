@@ -79,14 +79,15 @@ class ActivityProfile {
     return trends;
   }
 
-  showTotalStepsForWeek(endDate) {
+  showTotalForWeek(activity, endDate) {
     const datesInRange = this.findDateRange(endDate);
     const totalSteps = datesInRange.reduce((acc, entry) => {
-      acc += entry.numSteps;
+      acc += entry[activity];
       return acc;
     }, 0);
     return totalSteps;
   }
+
   compareStepsToAllUsers(date) {
     let allUserSteps = this.data.filter(entry => {
       return entry.date === date

@@ -17,13 +17,17 @@ const stepsToday = document.getElementById('today-steps');
 const stepsWeek = document.getElementById('week-steps');
 const stairsWeek = document.getElementById('week-stairs');
 const activityMinsWeek = document.getElementById('week-activity-mins');
-const compareStepsToday = document.getElementById('compare-steps')
+const compareStepsToday = document.getElementById('compare-steps');
 const compareMinsToday = document.getElementById('compare-mins-active')
 
 const activityToday = document.getElementById('today-activity');
-const friendTrends = document.getElementById('friend-trends');
-const topSteps = document.getElementById('highest-steps');
-const milesToday = document.getElementById('today-miles')
+const stepTrends = document.getElementById('step-trends');
+const stairTrends = document.getElementById('stair-trends');
+const minsTrends = document.getElementById('mins-trends');
+const milesToday = document.getElementById('today-miles');
+const stepsBox = document.getElementById('step-box');
+const stairsBox = document.getElementById('stairs-box');
+const minsBox = document.getElementById('mins-box');
 
 let random = Math.floor(Math.random() * (50));
 const userRepo = new UserRepository(userData);
@@ -86,28 +90,52 @@ compareMinsToday.innerText = (userActivity.compareMinsActiveToAllUsers(lastActiv
 
 const yourTotalSteps = {
   name: 'you',
-  totalSteps: userActivity.showTotalStepsForWeek(lastActivityDate)
+  totalSteps: userActivity.showTotalForWeek('numSteps', lastActivityDate),
+  totalStairs: userActivity.showTotalForWeek('flightsOfStairs', lastActivityDate),
+  totalMins: userActivity.showTotalForWeek('minutesActive', lastActivityDate)
 }
 const friendTotalSteps = friendActivities.map(act => {
   return {
     name: act.user.returnFirstName(),
-    totalSteps: act.showTotalStepsForWeek(lastActivityDate)
+    totalSteps: act.showTotalForWeek('numSteps', lastActivityDate),
+    totalStairs: act.showTotalForWeek('flightsOfStairs', lastActivityDate),
+    totalMins: act.showTotalForWeek('minutesActive', lastActivityDate)
   }
 });
 const youAndFriends = [yourTotalSteps, ...friendTotalSteps];
-const highestSteps = youAndFriends.reduce((acc, friend) => {
-  return Math.max(acc, friend.totalSteps);
-}, 0);
-const highestStepper = youAndFriends.find(friend => friend.totalSteps === highestSteps);
-console.log(highestSteps);
+const sortHighToLow = (activity) => {
+  const sorted = [...youAndFriends].sort((a, b) => {
+    return b[activity] - a[activity];
+  })
+  return sorted;
+}
 
-const friendTrendStatements = youAndFriends.map(friend => {
-  return `${friend.name} had <span class="step-num">${friend.totalSteps}</span> steps`;
-});
+const highestStepper = sortHighToLow('totalSteps');
+const highestStairClimber = sortHighToLow('totalStairs');
+const mostActive = sortHighToLow('totalMins');
 
-friendTrends.innerHTML = `<p>This week, ${friendTrendStatements.join(', ')}.</p>`
-topSteps.innerHTML = `<p>The person with the highest number of steps this week was
-${highestStepper.name} with <span class="step-num">${highestStepper.totalSteps}</span> steps</p>`
+const friendTrendStatements = (ranking, activity) => {
+  const statements = ranking.map((person, indx) => {
+    return `<p class="scoreboard-name ${person.name}">${indx + 1}. ${person.name} (${person[activity]})</p>`;
+  })
+  return statements;
+}
 
+stepsBox.innerHTML = friendTrendStatements(highestStepper, 'totalSteps').join('');
+stairsBox.innerHTML = friendTrendStatements(highestStairClimber, 'totalStairs').join('');
+minsBox.innerHTML = friendTrendStatements(mostActive, 'totalMins').join('');
 
-console.log();
+const displayIncreases = (activity) => {
+  const increases = userActivity.findThreeDayTrends(activity);
+  const abrv = increases.map(inc => {
+    const dates = inc.map(date => {
+      return date.slice(5);
+    })
+    return dates;
+  })
+  return `${abrv[abrv.length - 1].join(' - ')}, ${abrv[abrv.length - 2].join(' - ')}, ${abrv[abrv.length - 3].join(' - ')}, and ${abrv.length - 3} other times`
+}
+
+stepTrends.innerText = displayIncreases('numSteps');
+stairTrends.innerText = displayIncreases('flightsOfStairs');
+minsTrends.innerText = displayIncreases('minutesActive');
