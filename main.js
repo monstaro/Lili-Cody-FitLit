@@ -8,7 +8,7 @@ const avgStepSpan = document.getElementById('avg-step-goal');
 const todaySleep = document.getElementById('today-sleep');
 const todayHydration = document.getElementById('today-hydration');
 const todayQuality = document.getElementById('today-quality');
-const weekHydration = document.getElementById('week-hydration');
+// const weekHydration = document.getElementById('week-hydration');
 const hoursWeekSleep = document.getElementById('hours-week-sleep');
 const qualityWeekSleep = document.getElementById('quality-week-sleep');
 const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
@@ -58,7 +58,7 @@ avgStepSpan.innerText = userRepo.findAvgStepGoal();
 todaySleep.innerText = userSleep.findHoursSlept(lastSleepDate);
 todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
 todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
-weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate);
+// weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate, 'numOunces');
 
 
 
@@ -69,7 +69,7 @@ stepsToday.innerText = userActivity.findSteps(lastActivityDate) + ' steps';
 activityToday.innerText = userActivity.findMinutesActive(lastActivityDate) + ' minutes';
 hoursWeekSleep.innerText = userSleep.findHoursSleptForWeek(lastSleepDate).map(hour => ' ' + hour + ' hrs');
 qualityWeekSleep.innerText = userSleep.findSleepQualityForWeek(lastSleepDate).map(quality => ' ' + quality + '/5 Quality');
-weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate).map(date => ' ' + date + ' oz.');
+// weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate, 'numOunces').map(date => ' ' + date + ' oz.');
 allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - ' +
 userSleep.calculateSleepQualityAllTime() + '/5 quality';
 allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
@@ -139,3 +139,27 @@ const displayIncreases = (activity) => {
 stepTrends.innerText = displayIncreases('numSteps');
 stairTrends.innerText = displayIncreases('flightsOfStairs');
 minsTrends.innerText = displayIncreases('minutesActive');
+
+
+
+
+
+let hydrationChart = document.getElementById('week-hydration').getContext('2d');
+var chart = new Chart(hydrationChart, {
+  // The type of chart we want to create
+  type: 'polarArea',
+
+  // The data for our dataset
+  data: {
+    labels: userHydration.findOzForWeek(lastHydroDate, 'date').map(entry => entry.slice(5)),
+    datasets: [{
+      label: 'Hydration',
+      backgroundColor: 'rgb(0, 0, 0, 0.1)',
+      borderColor: 'rgb(0, 174, 255, 0.9)',
+      data: userHydration.findOzForWeek(lastHydroDate, 'numOunces')
+    }]
+  },
+
+  // Configuration options go here
+  options: {}
+});

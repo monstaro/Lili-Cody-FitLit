@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./style.css">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Comfortaa:400,700&display=swap" rel="stylesheet">
+
   </head>
   <body>
     <header>
@@ -25,9 +26,11 @@
     </header>
     <div class="main-container">
       <section class="hydration">
+ 
         <h1 class="box-title">Hydration</h1>
         <p class="today">Today: <span id="today-hydration"></span> oz.</p>
-        <p class="this-week">This Week: <span id="week-hydration"></span></p>
+        <p class="this-week">This Week in Ounces: 
+          <canvas id="week-hydration"></canvas></p>
         <p class="all-time-avg">All Time Average: <span id="alltime-avg-hydration"></span></p>
       </section>
 
@@ -91,6 +94,7 @@
     <script src="./src/HydrationProfile.js"></script>
     <script src="./src/SleepProfile.js"></script>
     <script src="./src/ActivityProfile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="./main.js"></script>
   </body>
 </html>
