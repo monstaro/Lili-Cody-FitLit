@@ -90,6 +90,7 @@ header {
 .scoreboard {
   grid-area: scoreboard;
   background-color: rgba(2, 9, 45, 0.3);
+  overflow: scroll;
 }
 
 .you {
