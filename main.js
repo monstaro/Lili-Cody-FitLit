@@ -17,12 +17,13 @@ const stepsToday = document.getElementById('today-steps');
 const stepsWeek = document.getElementById('week-steps');
 const stairsWeek = document.getElementById('week-stairs');
 const activityMinsWeek = document.getElementById('week-activity-mins');
-const compareStepsToday = document.getElementById('compare-steps')
+const compareStepsToday = document.getElementById('compare-steps');
 const compareMinsToday = document.getElementById('compare-mins-active')
 
 const activityToday = document.getElementById('today-activity');
-const friendTrends = document.getElementById('friend-trends');
-const topSteps = document.getElementById('highest-steps');
+const stepTrends = document.getElementById('step-trends');
+const stairTrends = document.getElementById('stair-trends');
+const minsTrends = document.getElementById('mins-trends');
 const milesToday = document.getElementById('today-miles');
 const stepsBox = document.getElementById('step-box');
 const stairsBox = document.getElementById('stairs-box');
@@ -102,16 +103,6 @@ const friendTotalSteps = friendActivities.map(act => {
   }
 });
 const youAndFriends = [yourTotalSteps, ...friendTotalSteps];
-
-
-// const findHighest = (activityTotal) => {
-//   const highest = youAndFriends.reduce((acc, friend) => {
-//     return Math.max(acc, friend[activityTotal]);
-//   }, 0);
-//   const highestFriend = youAndFriends.find(friend => friend[activityTotal] === highest);
-//   return highestFriend;
-// }
-
 const sortHighToLow = (activity) => {
   const sorted = [...youAndFriends].sort((a, b) => {
     return b[activity] - a[activity];
@@ -133,3 +124,18 @@ const friendTrendStatements = (ranking, activity) => {
 stepsBox.innerHTML = friendTrendStatements(highestStepper, 'totalSteps').join('');
 stairsBox.innerHTML = friendTrendStatements(highestStairClimber, 'totalStairs').join('');
 minsBox.innerHTML = friendTrendStatements(mostActive, 'totalMins').join('');
+
+const displayIncreases = (activity) => {
+  const increases = userActivity.findThreeDayTrends(activity);
+  const abrv = increases.map(inc => {
+    const dates = inc.map(date => {
+      return date.slice(5);
+    })
+    return dates;
+  })
+  return `${abrv[abrv.length - 1].join(' - ')}, ${abrv[abrv.length - 2].join(' - ')}, ${abrv[abrv.length - 3].join(' - ')}, and ${abrv.length - 3} other times`
+}
+
+stepTrends.innerText = displayIncreases('numSteps');
+stairTrends.innerText = displayIncreases('flightsOfStairs');
+minsTrends.innerText = displayIncreases('minutesActive');
