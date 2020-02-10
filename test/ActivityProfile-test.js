@@ -83,4 +83,7 @@ describe('ActivityProfile', function() {
   it('should return total steps taken for a week', () => {
     expect(activityProfile.showTotalStepsForWeek('2019/06/17')).to.equal(24543);
   });
+  it.only('should compare the users steps to all users steps that day', () => {
+    expect(activityProfile.compareStepsToAllUsers('2019/06/17')).to.equal('Out of 5 users, you had step count number 1!')
+  })
 })
