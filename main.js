@@ -142,7 +142,7 @@ minsTrends.innerText = displayIncreases('minutesActive');
 
 
 
-
+console.log(userHydration.findOzForWeek(lastHydroDate, 'numOunces').map(entry => entry + 'oz'))
 
 let hydrationChart = document.getElementById('week-hydration').getContext('2d');
 var chart = new Chart(hydrationChart, {
@@ -154,12 +154,15 @@ var chart = new Chart(hydrationChart, {
     labels: userHydration.findOzForWeek(lastHydroDate, 'date').map(entry => entry.slice(5)),
     datasets: [{
       label: 'Hydration',
-      backgroundColor: 'rgb(0, 0, 0, 0.1)',
+      backgroundColor: ['rgb(255, 0, 0, 0.8)', 'rgb(255, 144, 0, 0.8)', 'rgb(255, 255, 0, 0.8)', 'rgb(17, 175, 0, 0.8)', 'rgb(0, 0, 255, 0.8)', 'rgb(153, 5, 183, 0.8)', 'rgb(0, 0, 0, 0.8)'],
       borderColor: 'rgb(0, 174, 255, 0.9)',
-      data: userHydration.findOzForWeek(lastHydroDate, 'numOunces')
-    }]
+      hoverBackgroundColor: 'rgb(255, 255, 255, 0.3',
+      data: userHydration.findOzForWeek(lastHydroDate, 'numOunces'),
+    }],
   },
 
   // Configuration options go here
-  options: {}
+  options: {
+
+  }
 });
