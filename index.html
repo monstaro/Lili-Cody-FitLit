@@ -36,7 +36,6 @@
         <p class="today">Today: <span id="today-activity"></span></p>
         <p class="this-week">Minutes Active This week: <span id="week-activity-mins"> </span></p>
         <p class="this-week">Stair Count This Week: <span id="week-stairs"> </span></p>
-        <span id="compare-mins-active"> </span>
       </section>
 
       <section class="steps">
@@ -48,7 +47,7 @@
         <p class="today">Today: <span id="today-steps"></span></p>
         <p class="today">Miles: <span id="today-miles"> </span></p>
         <p class="this-week">This Week: <span id="week-steps"> </span></p>
-        <span id="compare-steps"> </span>
+
 
       </section>
 
@@ -68,8 +67,17 @@
         <p>Your minutes active increased from: <span id="mins-trends"></span></p>
       </section>
       <section class="scoreboard">
-        <h2 class="scoreboard-header">This Week's Scoreboard</h2>
+        <h1 class="scoreboard-header">This Week's Scoreboard</h2>
         <div class="sub-scoreboard">
+          <h2 class="scoreboard-header">For all Users:</h2>
+          <div class="comparisons">
+            <p id="compare-steps"></p>
+            <p id="compare-mins-active"></p>
+            <p id="compare-flights"></p>
+          </div>
+        </div>
+        <div class="sub-scoreboard">
+          <h2 class="scoreboard-header">You and Friends:</h2>
           <h2 class="scoreboard-header">Steps</h2>
           <div id="step-box"></div>
         </div>
