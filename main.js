@@ -125,7 +125,7 @@ const mostActive = sortHighToLow('totalMins');
 
 const friendTrendStatements = (ranking, activity) => {
   const statements = ranking.map((person, indx) => {
-    return `<p class="scoreboard-name">${indx + 1}. ${person.name} (${person[activity]})</p>`;
+    return `<p class="scoreboard-name ${person.name}">${indx + 1}. ${person.name} (${person[activity]})</p>`;
   })
   return statements;
 }
@@ -133,7 +133,3 @@ const friendTrendStatements = (ranking, activity) => {
 stepsBox.innerHTML = friendTrendStatements(highestStepper, 'totalSteps').join('');
 stairsBox.innerHTML = friendTrendStatements(highestStairClimber, 'totalStairs').join('');
 minsBox.innerHTML = friendTrendStatements(mostActive, 'totalMins').join('');
-
-// friendTrends.innerHTML = `<p>This week, ${friendTrendStatements.join(', ')}.</p>`
-// topSteps.innerHTML = `<p>The person with the highest number of steps this week was
-// ${highestStepper.name} with <span class="step-num">${highestStepper.totalSteps}</span> steps</p>`
