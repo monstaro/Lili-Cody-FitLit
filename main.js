@@ -71,9 +71,9 @@ userSleep.calculateSleepQualityAllTime() + '/5 quality';
 allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
 milesToday.innerText = userActivity.findMilesWalked(lastActivityDate) + ' miles';
 
-stairsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' flights climbed');
+// stairsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' flights climbed');
 
-activityMinsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' minutes');
+// activityMinsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' minutes');
 
 compareStepsToday.innerText = userActivity.compareStepsToAllUsers(lastActivityDate);
 
@@ -134,6 +134,44 @@ const displayIncreases = (activity) => {
 stepTrends.innerText = displayIncreases('numSteps');
 stairTrends.innerText = displayIncreases('flightsOfStairs');
 minsTrends.innerText = displayIncreases('minutesActive');
+
+console.log(userActivity.showTotalForWeek('numSteps', lastActivityDate))
+const stepStairChart = document.getElementById('step-stair-chart').getContext('2d');
+const stepStairChartData = new Chart(stepStairChart, {
+    type: 'bar',
+
+    data: {
+        labels: userActivity.findDateRange(lastActivityDate).map(entry => entry.date.slice(5)),
+        datasets: [{
+            label: 'number of steps',
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(255, 99, 132)',
+            data: userActivity.findDataForWeek('numSteps', lastActivityDate),
+            yAxisID: 'steps-axis'
+        },
+        {
+            label: 'flights of stairs',
+            borderColor: '#4facfe',
+            backgroundColor: '#4facfe',
+            data: userActivity.findDataForWeek('flightsOfStairs', lastActivityDate),
+            yAxisID: 'stairs-axis'
+        }]
+    },
+
+    options: {
+      scales: {
+       yAxes: [{
+           id: 'steps-axis',
+           type: 'linear',
+           position: 'left'
+         }, {
+           id: 'stairs-axis',
+           type: 'linear',
+           position: 'right'
+         }]
+      }
+    }
+});
 
 const sleepChart = document.getElementById('sleep-chart').getContext('2d');
 var sleepChartData = new Chart(sleepChart, {
@@ -201,6 +239,7 @@ var hydroChart = new Chart(hydrationChart, {
 
   }
 });
+
 console.log(userActivity.findDateRange(lastActivityDate))
 var activityMinsGraph = document.getElementById('week-activity-mins').getContext('2d');
 
