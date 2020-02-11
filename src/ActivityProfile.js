@@ -39,6 +39,11 @@ class ActivityProfile {
     return datesInRange;
   }
 
+  findDataForWeek(activity, endDate) {
+    const datesInRange = this.findDateRange(endDate);
+    return datesInRange.map(entry => entry[activity]);
+  }
+
   findAvgMinActiveWeek(endDate) {
     const datesInRange = this.findDateRange(endDate);
     return Math.round(datesInRange.reduce((acc, day) => {
@@ -81,11 +86,11 @@ class ActivityProfile {
 
   showTotalForWeek(activity, endDate) {
     const datesInRange = this.findDateRange(endDate);
-    const totalSteps = datesInRange.reduce((acc, entry) => {
+    const total = datesInRange.reduce((acc, entry) => {
       acc += entry[activity];
       return acc;
     }, 0);
-    return totalSteps;
+    return total;
   }
 
   compareStepsToAllUsers(date) {
