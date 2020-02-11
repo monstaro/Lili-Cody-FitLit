@@ -24,6 +24,11 @@ header {
   padding-top: 25px;
 }
 
+.details-box {
+  font-family: 'Comfortaa', cursive;
+ 
+}
+
 .user-details {
   display: flex;
   width: 40%;
