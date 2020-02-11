@@ -138,14 +138,14 @@ const stepStairChartData = new Chart(stepStairChart, {
       label: 'number of steps',
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgb(255, 99, 132)',
-      data: userActivity.findDataForWeek('numSteps', lastActivityDate),
+      data: userActivity.findDataForWeek(lastActivityDate, 'numSteps'),
       yAxisID: 'steps-axis'
     },
     {
       label: 'flights of stairs',
       borderColor: '#4facfe',
       backgroundColor: '#4facfe',
-      data: userActivity.findDataForWeek('flightsOfStairs', lastActivityDate),
+      data: userActivity.findDataForWeek(lastActivityDate, 'flightsOfStairs'),
       yAxisID: 'stairs-axis'
     }]
   },
@@ -242,31 +242,8 @@ var chartMinsActive = new Chart(activityMinsGraph, {
       label: 'Minutes Active',
       backgroundColor: ['rgb(10, 10, 10, 0.5), 0.8)', 'rgb(255, 144, 0, 0.8)', 'rgb(255, 255, 0, 0.8)', 'rgb(17, 175, 0, 0.8)', 'rgb(0, 0, 255, 0.8)', 'rgb(153, 5, 183, 0.8)', 'rgb(0, 0, 0, 0.8)'],
       borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45]
+      data: userActivity.findDataForWeek(lastActivityDate, 'minutesActive')
     }]
   },
-
-  // Configuration options go here
   options: {}
 });
-// var activityMinsChart = new Chart(activityMinsGraph, {
-//   // The type of chart we want to create
-//   type: 'polarArea',
-
-//   // The data for our dataset
-//   data: {
-//     labels: userActivity.findMinutesActive(lastActivityDate),
-//     datasets: [{
-//       label: 'Activity Minutes',
-//       backgroundColor: ['rgb(255, 0, 0, 0.8)', 'rgb(255, 144, 0, 0.8)', 'rgb(255, 255, 0, 0.8)', 'rgb(17, 175, 0, 0.8)', 'rgb(0, 0, 255, 0.8)', 'rgb(153, 5, 183, 0.8)', 'rgb(0, 0, 0, 0.8)'],
-//       borderColor: 'rgb(0, 174, 255, 0.9)',
-//       hoverBackgroundColor: 'rgb(255, 255, 255, 0.3',
-//       data: userActivity.findMinutesActive(lastActivityDate),
-//     }],
-//   },
-
-//   // Configuration options go here
-//   options: {
-
-//   }
-// });
