@@ -56,11 +56,11 @@ header {
 
 .main-container {
   width: 1200px;
-  height: 1500px;
+  height: 1200px;
   margin: 25px auto;
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-columns: 460px 460px 220px;
   grid-template-rows: 0.5fr 2fr 2fr 1fr;
   grid-template-areas: "today today scoreboard"
                        "hydration activity scoreboard"
@@ -97,11 +97,6 @@ header {
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
 
-.step-info {
-  display: flex;
-  justify-content: space-between;
-}
-
 .steps {
   grid-area: steps;
   background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
@@ -125,11 +120,6 @@ header {
   grid-area: scoreboard;
   background-color: rgba(2, 9, 45, 0.3);
   overflow: scroll;
-}
-
-.top-row {
-  display: flex;
-  justify-content: space-evenly;
 }
 
 .top-row p {
