@@ -47,8 +47,8 @@
       <section class="activity">
         <h1 class="box-title">Activity</h1>
         <p class="this-week">This Week in Active Minutes:</p>
-         <canvas id="week-activity-mins"> </span>
-        <p class="this-week">Stair Count This Week: <span id="week-stairs"> </span></p>
+         <canvas id="week-activity-mins"></canvas> </span>
+         <p> Active Minute Record:  <span id="active-minute-record"> </span></p>
       </section>
 
       <section class="steps">
@@ -57,8 +57,12 @@
           <p class="this-week">This Week in Step and Stair Count:</p>
         </div>
         <canvas id="step-stair-chart"></canvas>
-        <p>Step Goal: <span id="step-goal"></span></p>
-          <p>(Compared to <span id="avg-step-goal"></span> Average Goal)</p>
+        <p>Step Goal: <span id="step-goal"></span>
+          (Compared to <span id="avg-step-goal"></span> Average Goal)</p>
+        <p>
+          Stair Record: <span id="stair-record"></span>, 
+          Step Record: <span id="step-record"></span>
+        </p>
       </section>
 
       <section class="sleep">
@@ -79,9 +83,9 @@
         <div class="sub-scoreboard">
           <h2 class="scoreboard-header">Today's Rankings:</h2>
           <div class="comparisons">
-            <p id="compare-steps"></p>
-            <p id="compare-mins-active"></p>
-            <p id="compare-flights"></p>
+            <p>Step Ranking: <span id="compare-steps"></span> Users!</p>
+            <p>Active Mins Ranking: <span id="compare-mins-active"></span> Users!</p>
+            <p>Stair Ranking: <span id="compare-flights"></span> Users!</p>
           </div>
         </div>
         <div class="sub-scoreboard">
