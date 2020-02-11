@@ -31,7 +31,7 @@ class ActivityProfile {
     return datesInRange;
   }
 
-  findDataForWeek(activity, endDate) {
+  findDataForWeek(endDate, activity) {
     const datesInRange = this.findDateRange(endDate);
     return datesInRange.map(entry => entry[activity]);
   }
