@@ -22,8 +22,12 @@ const milesToday = document.getElementById('today-miles');
 const stepsBox = document.getElementById('step-box');
 const stairsBox = document.getElementById('stairs-box');
 const minsBox = document.getElementById('mins-box');
-const infoButton = document.querySelector('.info-btn')
+const stepRecord = document.querySelector('#step-record');
+const stairRecord = document.querySelector('#stair-record');
 
+
+
+const activeMinuteRecord = document.querySelector('#active-minute-record')
 // Generate user data
 
 let random = Math.floor(Math.random() * (50));
@@ -57,15 +61,18 @@ avgStepSpan.innerText = userRepo.findAvgStepGoal();
 todaySleep.innerText = userSleep.findHoursSlept(lastSleepDate);
 todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
 todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
-stepsToday.innerText = userActivity.findSteps(lastActivityDate)
-activityToday.innerText = userActivity.findMinutesActive(lastActivityDate)
+stepsToday.innerText = userActivity.findActivity(lastActivityDate, 'numSteps');
+activityToday.innerText = userActivity.findActivity(lastActivityDate, 'minutesActive')
 allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - ' +
 userSleep.calculateSleepQualityAllTime() + '/5 quality';
 allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
 milesToday.innerText = userActivity.findMilesWalked(lastActivityDate)
-compareStepsToday.innerText = userActivity.compareStepsToAllUsers(lastActivityDate);
-compareMinsToday.innerText = userActivity.compareMinsActiveToAllUsers(lastActivityDate);
-compareFlightsToday.innerText = userActivity.compareFlightsClimbedToAllUsers(lastActivityDate);
+compareStepsToday.innerText = userActivity.compareToAllUsers(lastActivityDate, 'numSteps');
+compareMinsToday.innerText = userActivity.compareToAllUsers(lastActivityDate, 'minutesActive');
+compareFlightsToday.innerText = userActivity.compareToAllUsers(lastActivityDate, 'flightsOfStairs');
+activeMinuteRecord.innerText = userActivity.findRecord('minutesActive')
+stepRecord.innerText = userActivity.findRecord('numSteps')
+stairRecord.innerText = userActivity.findRecord('flightsOfStairs')
 
 
 //Generate scoreboard data and add to DOM
