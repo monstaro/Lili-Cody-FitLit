@@ -14,7 +14,7 @@ const qualityWeekSleep = document.getElementById('quality-week-sleep');
 const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
 const allTimeAvgHydration = document.getElementById('alltime-avg-hydration');
 const stepsToday = document.getElementById('today-steps');
-const stepsWeek = document.getElementById('week-steps');
+// const stepsWeek = document.getElementById('week-steps');
 const stairsWeek = document.getElementById('week-stairs');
 const activityMinsWeek = document.getElementById('week-activity-mins');
 const compareStepsToday = document.getElementById('compare-steps');
@@ -75,7 +75,7 @@ userSleep.calculateSleepQualityAllTime() + '/5 quality';
 allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
 milesToday.innerText = userActivity.findMilesWalked(lastActivityDate) + ' miles';
 
-stepsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.numSteps + ' steps ');
+// stepsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.numSteps + ' steps ');
 
 stairsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' flights climbed');
 
@@ -145,7 +145,9 @@ minsTrends.innerText = displayIncreases('minutesActive');
 console.log(userHydration.findOzForWeek(lastHydroDate, 'numOunces').map(entry => entry + 'oz'))
 
 let hydrationChart = document.getElementById('week-hydration').getContext('2d');
-var chart = new Chart(hydrationChart, {
+
+
+var hydroChart = new Chart(hydrationChart, {
   // The type of chart we want to create
   type: 'polarArea',
 
@@ -166,3 +168,47 @@ var chart = new Chart(hydrationChart, {
 
   }
 });
+console.log(userActivity.findDateRange(lastActivityDate))
+var activityMinsGraph = document.getElementById('week-activity-mins').getContext('2d');
+
+var chartMinsActive = new Chart(activityMinsGraph, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: userActivity.findDateRange(lastActivityDate).map(entry => entry.date.slice(5)),
+        datasets: [{
+            label: 'Minutes Active',
+            backgroundColor: ['rgb(10, 10, 10, 0.5), 0.8)', 'rgb(255, 144, 0, 0.8)', 'rgb(255, 255, 0, 0.8)', 'rgb(17, 175, 0, 0.8)', 'rgb(0, 0, 255, 0.8)', 'rgb(153, 5, 183, 0.8)', 'rgb(0, 0, 0, 0.8)'],
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+// var activityMinsChart = new Chart(activityMinsGraph, {
+//   // The type of chart we want to create
+//   type: 'polarArea',
+
+//   // The data for our dataset
+//   data: {
+//     labels: userActivity.findMinutesActive(lastActivityDate),
+//     datasets: [{
+//       label: 'Activity Minutes',
+//       backgroundColor: ['rgb(255, 0, 0, 0.8)', 'rgb(255, 144, 0, 0.8)', 'rgb(255, 255, 0, 0.8)', 'rgb(17, 175, 0, 0.8)', 'rgb(0, 0, 255, 0.8)', 'rgb(153, 5, 183, 0.8)', 'rgb(0, 0, 0, 0.8)'],
+//       borderColor: 'rgb(0, 174, 255, 0.9)',
+//       hoverBackgroundColor: 'rgb(255, 255, 255, 0.3',
+//       data: userActivity.findMinutesActive(lastActivityDate),
+//     }],
+//   },
+
+//   // Configuration options go here
+//   options: {
+
+//   }
+// });
+
+
