@@ -83,7 +83,7 @@ header {
   background-color: rgba(2, 9, 45, 0.3);
 }
 
-.today-info span, .you {
+.today-info span, .you, .comparisons span {
   color: #fda085;
 }
 
