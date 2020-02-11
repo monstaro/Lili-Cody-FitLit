@@ -57,12 +57,12 @@ avgStepSpan.innerText = userRepo.findAvgStepGoal();
 todaySleep.innerText = userSleep.findHoursSlept(lastSleepDate);
 todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
 todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
-stepsToday.innerText = userActivity.findSteps(lastActivityDate) + ' steps';
-activityToday.innerText = userActivity.findMinutesActive(lastActivityDate) + ' minutes';
+stepsToday.innerText = userActivity.findSteps(lastActivityDate)
+activityToday.innerText = userActivity.findMinutesActive(lastActivityDate)
 allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - ' +
 userSleep.calculateSleepQualityAllTime() + '/5 quality';
 allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
-milesToday.innerText = userActivity.findMilesWalked(lastActivityDate) + ' miles';
+milesToday.innerText = userActivity.findMilesWalked(lastActivityDate)
 compareStepsToday.innerText = userActivity.compareStepsToAllUsers(lastActivityDate);
 compareMinsToday.innerText = userActivity.compareMinsActiveToAllUsers(lastActivityDate);
 compareFlightsToday.innerText = userActivity.compareFlightsClimbedToAllUsers(lastActivityDate);
@@ -123,74 +123,74 @@ minsTrends.innerText = displayIncreases('minutesActive');
 // Charts
 const stepStairChart = document.getElementById('step-stair-chart').getContext('2d');
 const stepStairChartData = new Chart(stepStairChart, {
-    type: 'bar',
+  type: 'bar',
 
-    data: {
-        labels: userActivity.findDateRange(lastActivityDate).map(entry => entry.date.slice(5)),
-        datasets: [{
-            label: 'number of steps',
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgb(255, 99, 132)',
-            data: userActivity.findDataForWeek('numSteps', lastActivityDate),
-            yAxisID: 'steps-axis'
-        },
-        {
-            label: 'flights of stairs',
-            borderColor: '#4facfe',
-            backgroundColor: '#4facfe',
-            data: userActivity.findDataForWeek('flightsOfStairs', lastActivityDate),
-            yAxisID: 'stairs-axis'
-        }]
+  data: {
+    labels: userActivity.findDateRange(lastActivityDate).map(entry => entry.date.slice(5)),
+    datasets: [{
+      label: 'number of steps',
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(255, 99, 132)',
+      data: userActivity.findDataForWeek('numSteps', lastActivityDate),
+      yAxisID: 'steps-axis'
     },
+    {
+      label: 'flights of stairs',
+      borderColor: '#4facfe',
+      backgroundColor: '#4facfe',
+      data: userActivity.findDataForWeek('flightsOfStairs', lastActivityDate),
+      yAxisID: 'stairs-axis'
+    }]
+  },
 
-    options: {
-      scales: {
-       yAxes: [{
-           id: 'steps-axis',
-           type: 'linear',
-           position: 'left'
-         }, {
-           id: 'stairs-axis',
-           type: 'linear',
-           position: 'right'
-         }]
-      }
+  options: {
+    scales: {
+      yAxes: [{
+        id: 'steps-axis',
+        type: 'linear',
+        position: 'left'
+      }, {
+        id: 'stairs-axis',
+        type: 'linear',
+        position: 'right'
+      }]
     }
+  }
 });
 
 const sleepChart = document.getElementById('sleep-chart').getContext('2d');
 var sleepChartData = new Chart(sleepChart, {
-    type: 'line',
+  type: 'line',
 
-    data: {
-        labels: userSleep.findDateRange(lastSleepDate).map(entry => entry.date.slice(5)),
-        datasets: [{
-            label: 'hours slept',
-            borderColor: 'rgb(255, 99, 132)',
-            data: userSleep.findHoursSleptForWeek(lastSleepDate),
-            yAxisID: 'hours-axis'
-        },
-        {
-            label: 'sleep quality',
-            borderColor: '#4facfe',
-            data: userSleep.findSleepQualityForWeek(lastSleepDate),
-            yAxisID: 'quality-axis'
-        }]
+  data: {
+    labels: userSleep.findDateRange(lastSleepDate).map(entry => entry.date.slice(5)),
+    datasets: [{
+      label: 'hours slept',
+      borderColor: 'rgb(255, 99, 132)',
+      data: userSleep.findHoursSleptForWeek(lastSleepDate),
+      yAxisID: 'hours-axis'
     },
+    {
+      label: 'sleep quality',
+      borderColor: '#4facfe',
+      data: userSleep.findSleepQualityForWeek(lastSleepDate),
+      yAxisID: 'quality-axis'
+    }]
+  },
 
-    options: {
-      scales: {
-       yAxes: [{
-           id: 'hours-axis',
-           type: 'linear',
-           position: 'left'
-         }, {
-           id: 'quality-axis',
-           type: 'linear',
-           position: 'right'
-         }]
-      }
+  options: {
+    scales: {
+      yAxes: [{
+        id: 'hours-axis',
+        type: 'linear',
+        position: 'left'
+      }, {
+        id: 'quality-axis',
+        type: 'linear',
+        position: 'right'
+      }]
     }
+  }
 });
 // const userDetails = document.querySelector('.user-details')
 // infoButton.onclick = function () {
@@ -225,22 +225,22 @@ var hydroChart = new Chart(hydrationChart, {
 console.log(userActivity.findDateRange(lastActivityDate))
 var activityMinsGraph = document.getElementById('week-activity-mins').getContext('2d');
 var chartMinsActive = new Chart(activityMinsGraph, {
-    // The type of chart we want to create
-    type: 'line',
+  // The type of chart we want to create
+  type: 'line',
 
-    // The data for our dataset
-    data: {
-        labels: userActivity.findDateRange(lastActivityDate).map(entry => entry.date.slice(5)),
-        datasets: [{
-            label: 'Minutes Active',
-            backgroundColor: ['rgb(10, 10, 10, 0.5), 0.8)', 'rgb(255, 144, 0, 0.8)', 'rgb(255, 255, 0, 0.8)', 'rgb(17, 175, 0, 0.8)', 'rgb(0, 0, 255, 0.8)', 'rgb(153, 5, 183, 0.8)', 'rgb(0, 0, 0, 0.8)'],
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-        }]
-    },
+  // The data for our dataset
+  data: {
+    labels: userActivity.findDateRange(lastActivityDate).map(entry => entry.date.slice(5)),
+    datasets: [{
+      label: 'Minutes Active',
+      backgroundColor: ['rgb(10, 10, 10, 0.5), 0.8)', 'rgb(255, 144, 0, 0.8)', 'rgb(255, 255, 0, 0.8)', 'rgb(17, 175, 0, 0.8)', 'rgb(0, 0, 255, 0.8)', 'rgb(153, 5, 183, 0.8)', 'rgb(0, 0, 0, 0.8)'],
+      borderColor: 'rgb(255, 99, 132)',
+      data: [0, 10, 5, 2, 20, 30, 45]
+    }]
+  },
 
-    // Configuration options go here
-    options: {}
+  // Configuration options go here
+  options: {}
 });
 // var activityMinsChart = new Chart(activityMinsGraph, {
 //   // The type of chart we want to create

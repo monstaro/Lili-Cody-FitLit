@@ -56,18 +56,19 @@ header {
 
 .main-container {
   width: 1200px;
-  height: 1200px;
+  height: 1500px;
   margin: 25px auto;
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 2fr 2fr 1fr;
-  grid-template-rows: 2fr 2fr 1fr;
-  grid-template-areas: "hydration activity scoreboard"
+  grid-template-rows: 0.5fr 2fr 2fr 1fr;
+  grid-template-areas: "today today scoreboard"
+                       "hydration activity scoreboard"
                        "steps sleep scoreboard"
                        "trends trends scoreboard";
 }
 
-.hydration, .activity, .steps, .sleep, .trends, .scoreboard {
+.hydration, .activity, .steps, .sleep, .trends, .scoreboard, .today-info {
   padding: 15px;
   border-radius: 10px;
   box-shadow: 2px 4px 7px 0px #4b4b4f;
@@ -75,6 +76,15 @@ header {
   font-weight: 400;
 	-webkit-animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.today-info {
+  grid-area: today;
+  background-color: rgba(2, 9, 45, 0.3);
+}
+
+.today-info span, .you {
+  color: #fda085;
 }
 
 .hydration {
@@ -115,10 +125,6 @@ header {
   grid-area: scoreboard;
   background-color: rgba(2, 9, 45, 0.3);
   overflow: scroll;
-}
-
-.you {
-  color: #fda085;
 }
 
 .top-row {
