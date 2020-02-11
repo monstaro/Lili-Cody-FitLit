@@ -28,6 +28,8 @@ const milesToday = document.getElementById('today-miles');
 const stepsBox = document.getElementById('step-box');
 const stairsBox = document.getElementById('stairs-box');
 const minsBox = document.getElementById('mins-box');
+const infoButton = document.querySelector('.info-btn')
+
 
 let random = Math.floor(Math.random() * (50));
 const userRepo = new UserRepository(userData);
@@ -140,11 +142,15 @@ stepTrends.innerText = displayIncreases('numSteps');
 stairTrends.innerText = displayIncreases('flightsOfStairs');
 minsTrends.innerText = displayIncreases('minutesActive');
 
+// const userDetails = document.querySelector('.user-details')
+// infoButton.onclick = function () {
+//   userDetails.classList.toggle('hide')
+// }
 
-
-console.log(userHydration.findOzForWeek(lastHydroDate, 'numOunces').map(entry => entry + 'oz'))
+// console.log(userHydration.findOzForWeek(lastHydroDate, 'numOunces').map(entry => entry + 'oz'))
 
 let hydrationChart = document.getElementById('week-hydration').getContext('2d');
+
 
 
 var hydroChart = new Chart(hydrationChart, {
