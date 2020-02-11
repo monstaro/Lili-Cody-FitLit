@@ -8,19 +8,12 @@ const avgStepSpan = document.getElementById('avg-step-goal');
 const todaySleep = document.getElementById('today-sleep');
 const todayHydration = document.getElementById('today-hydration');
 const todayQuality = document.getElementById('today-quality');
-const weekHydration = document.getElementById('week-hydration');
-// const hoursWeekSleep = document.getElementById('hours-week-sleep');
-const qualityWeekSleep = document.getElementById('quality-week-sleep');
 const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
 const allTimeAvgHydration = document.getElementById('alltime-avg-hydration');
 const stepsToday = document.getElementById('today-steps');
-// const stepsWeek = document.getElementById('week-steps');
-const stairsWeek = document.getElementById('week-stairs');
-const activityMinsWeek = document.getElementById('week-activity-mins');
 const compareStepsToday = document.getElementById('compare-steps');
 const compareMinsToday = document.getElementById('compare-mins-active')
 const compareFlightsToday = document.getElementById('compare-flights')
-
 const activityToday = document.getElementById('today-activity');
 const stepTrends = document.getElementById('step-trends');
 const stairTrends = document.getElementById('stair-trends');
@@ -31,6 +24,7 @@ const stairsBox = document.getElementById('stairs-box');
 const minsBox = document.getElementById('mins-box');
 const infoButton = document.querySelector('.info-btn')
 
+// Generate user data
 
 let random = Math.floor(Math.random() * (50));
 const userRepo = new UserRepository(userData);
@@ -51,6 +45,8 @@ const lastHydroDate = userHydration.findLastEntry();
 const lastSleepDate = userSleep.findLastEntry();
 const lastActivityDate = userActivity.findLastEntry();
 
+//Populate DOM text
+
 userSpan.innerText = user.returnFirstName();
 addressSpan.innerText = user.address;
 emailSpan.innerText = user.email;
@@ -61,28 +57,18 @@ avgStepSpan.innerText = userRepo.findAvgStepGoal();
 todaySleep.innerText = userSleep.findHoursSlept(lastSleepDate);
 todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
 todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
-
 stepsToday.innerText = userActivity.findSteps(lastActivityDate) + ' steps';
-
-
 activityToday.innerText = userActivity.findMinutesActive(lastActivityDate) + ' minutes';
 allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - ' +
 userSleep.calculateSleepQualityAllTime() + '/5 quality';
 allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
 milesToday.innerText = userActivity.findMilesWalked(lastActivityDate) + ' miles';
-
-stairsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' flights climbed');
-
-activityMinsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' minutes');
-
 compareStepsToday.innerText = userActivity.compareStepsToAllUsers(lastActivityDate);
-
 compareMinsToday.innerText = userActivity.compareMinsActiveToAllUsers(lastActivityDate);
 compareFlightsToday.innerText = userActivity.compareFlightsClimbedToAllUsers(lastActivityDate);
 
 
-
-
+//Generate scoreboard data and add to DOM
 const yourTotalSteps = {
   name: 'you',
   totalSteps: userActivity.showTotalForWeek('numSteps', lastActivityDate),
@@ -104,11 +90,9 @@ const sortHighToLow = (activity) => {
   })
   return sorted;
 }
-
 const highestStepper = sortHighToLow('totalSteps');
 const highestStairClimber = sortHighToLow('totalStairs');
 const mostActive = sortHighToLow('totalMins');
-
 const friendTrendStatements = (ranking, activity) => {
   const statements = ranking.map((person, indx) => {
     return `<p class="scoreboard-name ${person.name}">${indx + 1}. ${person.name} (${person[activity]})</p>`;
@@ -120,6 +104,8 @@ stepsBox.innerHTML = friendTrendStatements(highestStepper, 'totalSteps').join(''
 stairsBox.innerHTML = friendTrendStatements(highestStairClimber, 'totalStairs').join('');
 minsBox.innerHTML = friendTrendStatements(mostActive, 'totalMins').join('');
 
+
+// Calculate and display 3+ day trends
 const displayIncreases = (activity) => {
   const increases = userActivity.findThreeDayTrends(activity);
   const abrv = increases.map(inc => {
@@ -130,10 +116,47 @@ const displayIncreases = (activity) => {
   })
   return `${abrv[abrv.length - 1].join(' - ')}, ${abrv[abrv.length - 2].join(' - ')}, ${abrv[abrv.length - 3].join(' - ')}, and ${abrv.length - 3} other times`
 }
-
 stepTrends.innerText = displayIncreases('numSteps');
 stairTrends.innerText = displayIncreases('flightsOfStairs');
 minsTrends.innerText = displayIncreases('minutesActive');
+
+// Charts
+const stepStairChart = document.getElementById('step-stair-chart').getContext('2d');
+const stepStairChartData = new Chart(stepStairChart, {
+    type: 'bar',
+
+    data: {
+        labels: userActivity.findDateRange(lastActivityDate).map(entry => entry.date.slice(5)),
+        datasets: [{
+            label: 'number of steps',
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(255, 99, 132)',
+            data: userActivity.findDataForWeek('numSteps', lastActivityDate),
+            yAxisID: 'steps-axis'
+        },
+        {
+            label: 'flights of stairs',
+            borderColor: '#4facfe',
+            backgroundColor: '#4facfe',
+            data: userActivity.findDataForWeek('flightsOfStairs', lastActivityDate),
+            yAxisID: 'stairs-axis'
+        }]
+    },
+
+    options: {
+      scales: {
+       yAxes: [{
+           id: 'steps-axis',
+           type: 'linear',
+           position: 'left'
+         }, {
+           id: 'stairs-axis',
+           type: 'linear',
+           position: 'right'
+         }]
+      }
+    }
+});
 
 const sleepChart = document.getElementById('sleep-chart').getContext('2d');
 var sleepChartData = new Chart(sleepChart, {
@@ -177,9 +200,6 @@ var sleepChartData = new Chart(sleepChart, {
 // console.log(userHydration.findOzForWeek(lastHydroDate, 'numOunces').map(entry => entry + 'oz'))
 
 let hydrationChart = document.getElementById('week-hydration').getContext('2d');
-
-
-
 var hydroChart = new Chart(hydrationChart, {
   // The type of chart we want to create
   type: 'polarArea',
@@ -201,9 +221,9 @@ var hydroChart = new Chart(hydrationChart, {
 
   }
 });
+
 console.log(userActivity.findDateRange(lastActivityDate))
 var activityMinsGraph = document.getElementById('week-activity-mins').getContext('2d');
-
 var chartMinsActive = new Chart(activityMinsGraph, {
     // The type of chart we want to create
     type: 'line',
