@@ -126,6 +126,10 @@ header {
   justify-content: space-evenly;
 }
 
+.top-row p {
+  margin: 0;
+}
+
 #week-hydration {
   border-radius: 10px;
   background: rgb(252, 239, 239, 0.4);
