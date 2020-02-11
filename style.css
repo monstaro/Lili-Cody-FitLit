@@ -41,7 +41,7 @@ header {
   border-radius: 25px;
   margin-top: 25px;
   /* padding: 10px; */
-  
+
 }
 
 .user-details {
@@ -56,7 +56,7 @@ header {
 
 .main-container {
   width: 1200px;
-  height: 900px;
+  height: 1200px;
   margin: 25px auto;
   display: grid;
   grid-gap: 20px;
@@ -114,6 +114,7 @@ header {
 .scoreboard {
   grid-area: scoreboard;
   background-color: rgba(2, 9, 45, 0.3);
+  overflow: scroll;
 }
 
 .you {

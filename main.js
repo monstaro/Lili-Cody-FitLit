@@ -8,8 +8,8 @@ const avgStepSpan = document.getElementById('avg-step-goal');
 const todaySleep = document.getElementById('today-sleep');
 const todayHydration = document.getElementById('today-hydration');
 const todayQuality = document.getElementById('today-quality');
-// const weekHydration = document.getElementById('week-hydration');
-const hoursWeekSleep = document.getElementById('hours-week-sleep');
+const weekHydration = document.getElementById('week-hydration');
+// const hoursWeekSleep = document.getElementById('hours-week-sleep');
 const qualityWeekSleep = document.getElementById('quality-week-sleep');
 const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
 const allTimeAvgHydration = document.getElementById('alltime-avg-hydration');
@@ -19,6 +19,7 @@ const stairsWeek = document.getElementById('week-stairs');
 const activityMinsWeek = document.getElementById('week-activity-mins');
 const compareStepsToday = document.getElementById('compare-steps');
 const compareMinsToday = document.getElementById('compare-mins-active')
+const compareFlightsToday = document.getElementById('compare-flights')
 
 const activityToday = document.getElementById('today-activity');
 const stepTrends = document.getElementById('step-trends');
@@ -60,32 +61,24 @@ avgStepSpan.innerText = userRepo.findAvgStepGoal();
 todaySleep.innerText = userSleep.findHoursSlept(lastSleepDate);
 todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
 todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
-// weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate, 'numOunces');
-
-
-
 
 stepsToday.innerText = userActivity.findSteps(lastActivityDate) + ' steps';
 
 
 activityToday.innerText = userActivity.findMinutesActive(lastActivityDate) + ' minutes';
-hoursWeekSleep.innerText = userSleep.findHoursSleptForWeek(lastSleepDate).map(hour => ' ' + hour + ' hrs');
-qualityWeekSleep.innerText = userSleep.findSleepQualityForWeek(lastSleepDate).map(quality => ' ' + quality + '/5 Quality');
-// weekHydration.innerText = userHydration.findOzForWeek(lastHydroDate, 'numOunces').map(date => ' ' + date + ' oz.');
 allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - ' +
 userSleep.calculateSleepQualityAllTime() + '/5 quality';
 allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
 milesToday.innerText = userActivity.findMilesWalked(lastActivityDate) + ' miles';
 
-// stepsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.numSteps + ' steps ');
-
 stairsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' flights climbed');
 
 activityMinsWeek.innerText = userActivity.findDateRange(lastActivityDate).map(date => ' ' + date.flightsOfStairs + ' minutes');
 
-compareStepsToday.innerText = userActivity.compareStepsToAllUsers(lastActivityDate)
+compareStepsToday.innerText = userActivity.compareStepsToAllUsers(lastActivityDate);
 
-compareMinsToday.innerText = (userActivity.compareMinsActiveToAllUsers(lastActivityDate) + userActivity.compareFlightsClimbedToAllUsers(lastActivityDate))
+compareMinsToday.innerText = userActivity.compareMinsActiveToAllUsers(lastActivityDate);
+compareFlightsToday.innerText = userActivity.compareFlightsClimbedToAllUsers(lastActivityDate);
 
 
 
@@ -142,6 +135,40 @@ stepTrends.innerText = displayIncreases('numSteps');
 stairTrends.innerText = displayIncreases('flightsOfStairs');
 minsTrends.innerText = displayIncreases('minutesActive');
 
+const sleepChart = document.getElementById('sleep-chart').getContext('2d');
+var sleepChartData = new Chart(sleepChart, {
+    type: 'line',
+
+    data: {
+        labels: userSleep.findDateRange(lastSleepDate).map(entry => entry.date.slice(5)),
+        datasets: [{
+            label: 'hours slept',
+            borderColor: 'rgb(255, 99, 132)',
+            data: userSleep.findHoursSleptForWeek(lastSleepDate),
+            yAxisID: 'hours-axis'
+        },
+        {
+            label: 'sleep quality',
+            borderColor: '#4facfe',
+            data: userSleep.findSleepQualityForWeek(lastSleepDate),
+            yAxisID: 'quality-axis'
+        }]
+    },
+
+    options: {
+      scales: {
+       yAxes: [{
+           id: 'hours-axis',
+           type: 'linear',
+           position: 'left'
+         }, {
+           id: 'quality-axis',
+           type: 'linear',
+           position: 'right'
+         }]
+      }
+    }
+});
 // const userDetails = document.querySelector('.user-details')
 // infoButton.onclick = function () {
 //   userDetails.classList.toggle('hide')
@@ -216,5 +243,3 @@ var chartMinsActive = new Chart(activityMinsGraph, {
 
 //   }
 // });
-
-
