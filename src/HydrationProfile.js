@@ -12,7 +12,7 @@ class HydrationProfile {
   }
 
   findOzConsumed(date) {
-    return this.entries.find(drinker => drinker.date === date).numOunces
+    return this.entries.find(drinker => drinker.date === date).numOunces;
   }
 
   findOzForWeek(endDate, metric) {

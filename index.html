@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <html>
+ <html lang="en" dir="ltr"> 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,41 +29,47 @@
       </div>
     </header>
     <div class="main-container">
+      <section class="today-info">
+        <h2 class="today-glance">Today At A Glance</h2>
+        <p class="today"></p>Today you drank <span id="today-hydration"></span> oz.,
+        were active for <span id="today-activity"></span> minutes,
+        walked <span id="today-steps"></span> steps (<span id="today-miles"></span> miles), 
+       slept for <span id="today-sleep"></span> hrs (<span id="today-quality"></span> quality)
+      </p>
+      </section>
       <section class="hydration">
-
         <h1 class="box-title">Hydration</h1>
-        <div class="top-row"><p class="today">Today: <span id="today-hydration"></span> oz.</p> <p class="all-time-avg">All Time Average: <span id="alltime-avg-hydration"></span></p></div>
         <p class="this-week">This Week in Ounces:</p>
           <canvas id="week-hydration"></canvas>
-
+          <p class="all-time-avg">All Time Average: <span id="alltime-avg-hydration"></span></p>
       </section>
 
       <section class="activity">
         <h1 class="box-title">Activity</h1>
-        <p class="today">Minutes Active Today: <span id="today-activity"></span></p>
-         <canvas id="week-activity-mins"> </span>
-        <p class="this-week">Stair Count This Week: <span id="week-stairs"> </span></p>
+        <p class="this-week">This Week in Active Minutes:</p>
+         <canvas id="week-activity-mins"></canvas> </span>
+         <p> Active Minute Record:  <span id="active-minute-record"> </span></p>
       </section>
 
       <section class="steps">
         <div class="step-info">
           <h1 class="box-title">Steps</h1>
-          <p>Step Goal: <span id="step-goal"></span></p>
-          <p>(Compared to <span id="avg-step-goal"></span> Average Goal)</p>
-
+          <p class="this-week">This Week in Step and Stair Count:</p>
         </div>
-        <p class="today">Today: <span id="today-steps"></span></p>
-        <p class="today">Miles: <span id="today-miles"> </span></p>
         <canvas id="step-stair-chart"></canvas>
+        <p>Step Goal: <span id="step-goal"></span>
+          (Compared to <span id="avg-step-goal"></span> Average Goal)</p>
+        <p>
+          Stair Record: <span id="stair-record"></span>, 
+          Step Record: <span id="step-record"></span>
+        </p>
       </section>
 
       <section class="sleep">
         <h1 class="box-title">Sleep</h1>
-
-        <p class="today">Today: <span id="today-sleep"></span> hrs, <span id="today-quality"></span> / 5 Quality</p>
-
-        <p class="all-time-avg">All Time Average: <span id="alltime-avg-sleep"></span></p>
+        <p class="this-week">This Week in Sleep Hours/Quality:</p>
         <canvas id="sleep-chart"></canvas>
+        <p class="all-time-avg">All Time Average: <span id="alltime-avg-sleep"></span></p>
       </section>
 
       <section class="trends">
@@ -77,9 +83,9 @@
         <div class="sub-scoreboard">
           <h2 class="scoreboard-header">Today's Rankings:</h2>
           <div class="comparisons">
-            <p id="compare-steps"></p>
-            <p id="compare-mins-active"></p>
-            <p id="compare-flights"></p>
+            <p>Step Ranking: <span id="compare-steps"></span> Users!</p>
+            <p>Active Mins Ranking: <span id="compare-mins-active"></span> Users!</p>
+            <p>Stair Ranking: <span id="compare-flights"></span> Users!</p>
           </div>
         </div>
         <div class="sub-scoreboard">

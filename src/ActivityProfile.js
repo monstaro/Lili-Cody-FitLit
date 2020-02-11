@@ -14,16 +14,8 @@ class ActivityProfile {
     let numMiles = totalFt / 5280;
     return Math.round((numMiles + Number.EPSILON) * 100) / 100
   }
-  findSteps(date) {
-    return this.entries.find(entry => entry.date === date).numSteps
-  }
-
-  findMinutesActive(date) {
-    return this.entries.find(entry => entry.date === date).minutesActive
-  }
-
-  findFlightsClimbed(date) {
-    return this.entries.find(entry => entry.date === date).flightsOfStairs
+  findActivity(date, activity) {
+    return this.entries.find(entry => entry.date === date)[activity]
   }
 
   findDateRange(endDate) {
@@ -39,7 +31,7 @@ class ActivityProfile {
     return datesInRange;
   }
 
-  findDataForWeek(activity, endDate) {
+  findDataForWeek(endDate, activity) {
     const datesInRange = this.findDateRange(endDate);
     return datesInRange.map(entry => entry[activity]);
   }
@@ -53,17 +45,16 @@ class ActivityProfile {
   }
 
   findIfStepGoalMet(date) {
-    return this.findSteps(date) >= this.user.dailyStepGoal ? true : false
+    return this.findActivity(date, 'numSteps') >= this.user.dailyStepGoal ? true : false
   }
 
   findDaysGoalExceeded() {
     return this.entries.filter(entry => entry.numSteps > this.user.dailyStepGoal).map(goodDay => goodDay.date)
   }
 
-  findStairRecord() {
-    let stairRecord = this.entries.sort((a, b) => b.flightsOfStairs - a.flightsOfStairs)
-    return stairRecord[0]
-      //we can use this to return both the date and stair count on the DOM
+  findRecord(activity) {
+    let activityRecord = this.entries.sort((a, b) => b[activity] - a[activity])
+    return `${activityRecord[0][activity]} on ${activityRecord[0].date.slice(5)}`
   }
 
   findThreeDayTrends(activity) {
@@ -92,40 +83,16 @@ class ActivityProfile {
     }, 0);
     return total;
   }
-
-  compareStepsToAllUsers(date) {
-    let allUserSteps = this.data.filter(entry => {
+  compareToAllUsers(date, activity) {
+    let allUserData = this.data.filter(entry => {
       return entry.date === date
     }).reduce((acc, cur) => {
-        acc.push(cur.numSteps)
+      acc.push(cur[activity])
       return acc
     }, []).sort((a, b) => b - a)
-    let userStepIndex = allUserSteps.indexOf(this.findSteps(date))
-    let totalUsers = allUserSteps.length
-
-    return `Step Ranking: ${userStepIndex + 1} / ${totalUsers} users!`
-  }
-  compareMinsActiveToAllUsers(date) {
-    let allUserMins = this.data.filter(entry => {
-      return entry.date === date
-    }).reduce((acc, cur) => {
-        acc.push(cur.minutesActive)
-      return acc
-    }, []).sort((a, b) => b - a)
-    let userActivityIndex = allUserMins.indexOf(this.findMinutesActive(date))
-    let totalUsers = allUserMins.length
-    return `Active Mins Ranking: ${userActivityIndex + 1} / ${totalUsers} users!`
-  }
-  compareFlightsClimbedToAllUsers(date) {
-    let allFlightsClimbed = this.data.filter(entry => {
-      return entry.date === date
-    }).reduce((acc, cur) => {
-        acc.push(cur.flightsOfStairs)
-      return acc
-    }, []).sort((a, b) => b - a)
-    let userFlightIndex = allFlightsClimbed.indexOf(this.findFlightsClimbed(date))
-    let totalUsers = allFlightsClimbed.length
-    return `Stair Ranking: ${userFlightIndex + 1} / ${totalUsers} users!`
+    let userDataIndex = allUserData.indexOf(this.findActivity(date, activity))
+    let totalUsers = allUserData.length
+    return `${userDataIndex + 1} / ${totalUsers}`
   }
 }
 
