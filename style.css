@@ -24,10 +24,34 @@ header {
   padding-top: 25px;
 }
 
+.details-box {
+  font-family: 'Comfortaa', cursive;
+  font-size: 75%;
+}
+
+.info-btn {
+  /* background: white;
+  border-radius: 360px; */
+  /* color: rgb(0,0,0,0.0); */
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+  margin-top: 25px;
+  /* padding: 10px; */
+  
+}
+
 .user-details {
   display: flex;
   width: 40%;
   justify-content: space-around;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 .main-container {
@@ -38,8 +62,8 @@ header {
   grid-gap: 20px;
   grid-template-columns: 2fr 2fr 1fr;
   grid-template-rows: 2fr 2fr 1fr;
-  grid-template-areas: "hydration steps scoreboard"
-                       "activity sleep scoreboard"
+  grid-template-areas: "hydration activity scoreboard"
+                       "steps sleep scoreboard"
                        "trends trends scoreboard";
 }
 
@@ -96,6 +120,15 @@ header {
   color: #fda085;
 }
 
+.top-row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#week-hydration {
+  border-radius: 10px;
+  background: rgb(252, 239, 239, 0.4);
+}
 
 
 /* ----------------------------------------------
