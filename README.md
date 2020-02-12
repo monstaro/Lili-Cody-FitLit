@@ -18,7 +18,6 @@ For now, 'today' on the site simply represents the most recent date in the datas
 
 ## Screenshots
 
-<img width="600
-<img width="600" alt="Bottom of homepage" src="https://user-images.githubusercontent.com/32964891/74378997-2b05d800-4da4-11ea-82bc-5bd9b8da403f.png">
-" alt="Login Screen" src="https://user-images.githubusercontent.com/32964891/74378877-f560ef00-4da3-11ea-83c0-f82cb3a0fc86.png">
+<img width="600" alt="Login Screen" src="https://user-images.githubusercontent.com/32964891/74378877-f560ef00-4da3-11ea-83c0-f82cb3a0fc86.png">
 <img width="600" alt="Top of homepage" src="https://user-images.githubusercontent.com/32964891/74378953-1a556200-4da4-11ea-813c-e7799602ed3d.png">
+<img width="600" alt="Bottom of homepage" src="https://user-images.githubusercontent.com/32964891/74378997-2b05d800-4da4-11ea-82bc-5bd9b8da403f.png">
