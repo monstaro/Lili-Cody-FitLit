@@ -31,9 +31,12 @@
   font-size: 2em;
 }
 
-input, button {
-  height: 30px;
+input {
   width: 300px;
+}
+
+input, button {
+  padding: 5px;
   text-align: center;
   margin-bottom: 10px;
   font-size: 1.5em;
@@ -41,6 +44,14 @@ input, button {
 }
 
 button {
+  width: 250px;
+  padding: 5px;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
+
+button:hover {
+  background-image: linear-gradient(to left, #4facfe 0%, #00f2fe 100%);
 }
 
 /* MAIN DASH */
