@@ -1,3 +1,67 @@
+/* LOG IN SCREEN  */
+
+.login-screen {
+  height: 1vh;
+}
+
+.login-field {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.login-header,
+.fitlit-header,
+.details-box,
+.login-screen p {
+  font-family: 'Comfortaa', cursive;
+}
+
+.login-header {
+  font-size: 6em;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-screen p {
+  font-size: 2em;
+}
+
+input {
+  width: 300px;
+}
+
+input, button {
+  padding: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  font-family: 'Comfortaa', cursive;
+}
+
+button {
+  width: 250px;
+  padding: 5px;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+}
+
+button:hover {
+  background-image: linear-gradient(to left, #4facfe 0%, #00f2fe 100%);
+}
+
+/* MAIN DASH */
+
+/* LAYOUT */
+
+.hidden {
+  display: none;
+}
+
 body {
   margin: 0;
   background: rgb(34,193,195);
@@ -17,14 +81,12 @@ header {
 }
 
 .fitlit-header {
-  font-family: 'Comfortaa', cursive;
   font-size: 2em;
   margin-left: 30px;
   padding-top: 25px;
 }
 
 .details-box {
-  font-family: 'Comfortaa', cursive;
   font-size: 75%;
 }
 
