@@ -10,7 +10,7 @@ describe('ActivitySummary', function() {
   beforeEach(() => {
     userRepo = new UserRepository(sampleUsers);
     activitySum = new ActivitySummary(sampleActivity);
-  })
+  });
 
   it('should be a function', () => {
     expect(ActivitySummary).to.be.a('function');
@@ -33,23 +33,23 @@ describe('ActivitySummary', function() {
     expect(activitySum.findAllMonths()).to.deep.equal([ '06', '08' ])
   });
 
-  it ('should be able to find the best steps months', () =>  {
+  it ('should be able to find the best steps month', () =>  {
     expect(activitySum.findBestStepsMonth()).to.equal('08');
-  })
+  });
 
-  it ('should be able to find the worst steps months', () =>  {
+  it ('should be able to find the worst steps month', () =>  {
     expect(activitySum.findWorstStepsMonth()).to.equal('06');
   });
 
   it('should return the avg stairs climbed of all users on a specific date', () => {
-    expect(activitySum.findAllUsersStairClimbAvg('2019/06/17', userRepo)).to.equal(15)
+    expect(activitySum.findAllUsersAvg('2019/06/17', 'flightsOfStairs')).to.equal(15)
   });
 
   it('should return the avg steps of all users on a specific date', () => {
-    expect(activitySum.findAllUsersStepsTaken('2019/06/17', userRepo)).to.equal(10781)
+    expect(activitySum.findAllUsersAvg('2019/06/17', 'numSteps')).to.equal(10781)
   });
 
   it('should return the avg mins active of all users on a specific date', () => {
-    expect(activitySum.findAllUsersMinsActive('2019/06/17', userRepo)).to.equal(111)
+    expect(activitySum.findAllUsersAvg('2019/06/17', 'minutesActive')).to.equal(111)
   });
 });
