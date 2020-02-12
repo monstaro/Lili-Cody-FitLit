@@ -1,21 +1,21 @@
 class HydrationProfile {
   constructor(userid, data) {
-    this.id = userid
-    this.entries = data.filter(user => user.userID === this.id)
+    this.id = userid;
+    this.entries = data.filter(user => user.userID === this.id);
   }
 
   calculateAllTimeOzAvg() {
     return Math.floor(this.entries.reduce((acc, cur) => {
       acc += cur.numOunces;
-      return acc
-    }, 0) / this.entries.length)
+      return acc;
+    }, 0) / this.entries.length);
   }
 
   findOzConsumed(date) {
     return this.entries.find(drinker => drinker.date === date).numOunces;
   }
 
-  findOzForWeek(endDate, metric) {
+  findDateRange(endDate) {
     const lastDate = new Date(endDate);
     const subtractWeek = () => {
       return new Date(lastDate.getTime() - (7 * 24 * 60 * 60 * 1000))
@@ -25,7 +25,12 @@ class HydrationProfile {
       const entryDate = new Date(entry.date);
       return firstDate < entryDate && entryDate <= lastDate;
     });
-    return datesInRange.map(date => date[metric])
+    return datesInRange;
+  }
+
+  findOzForWeek(endDate) {
+    const datesInRange = this.findDateRange(endDate);
+    return datesInRange.map(date => date.numOunces);
   }
 
   findLastEntry() {

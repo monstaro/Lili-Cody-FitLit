@@ -14,13 +14,12 @@ class ActivitySummary {
       }, 0) / filteredMonthEntries.length
       return Math.round(average);
     };
-    const monthAvgs = filteredMonthEntries.reduce((acc, entry) => {
-      acc.month = month;
-      acc.avgSteps = avg('numSteps');
-      acc.avgMins = avg('minutesActive');
-      acc.avgStairs = avg('flightsOfStairs');
-      return acc;
-    }, {});
+    const monthAvgs = {
+      month,
+      avgSteps: avg('numSteps'),
+      avgMins: avg('minutesActive'),
+      avgStairs: avg('flightsOfStairs')
+    };
     return monthAvgs;
   }
 
@@ -63,27 +62,11 @@ class ActivitySummary {
     return worstMonth.month;
   }
 
-  findAllUsersStairClimbAvg(date) {
+  findAllUsersAvg(date, activity) {
     let dates = this.data.filter(a => a.date === date)
     return Math.round(dates.reduce((acc, cur) => {
-        acc += cur.flightsOfStairs
-      return acc
-    }, 0) / dates.length);
-  }
-
-  findAllUsersStepsTaken(date) {
-    let dates = this.data.filter(a => a.date === date)
-    return Math.round(dates.reduce((acc, cur) => {
-        acc += cur.numSteps
-      return acc
-    }, 0) / dates.length);
-  }
-
-  findAllUsersMinsActive(date) {
-    let dates = this.data.filter(a => a.date === date)
-    return Math.round(dates.reduce((acc, cur) => {
-        acc += cur.minutesActive
-      return acc
+      acc += cur[activity];
+      return acc;
     }, 0) / dates.length);
   }
 }

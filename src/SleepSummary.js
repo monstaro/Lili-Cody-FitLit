@@ -3,9 +3,9 @@ class SleepSummary {
     this.data = data;
   }
 
-  findAvgSleepQuality() {
+  findAvgSleep(activity) {
     const total = this.data.reduce((acc, entry) => {
-      acc += entry.sleepQuality;
+      acc += entry[activity];
       return acc;
     }, 0);
     const avg = total / this.data.length;

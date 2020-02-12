@@ -3,9 +3,9 @@ class SleepProfile {
     this.entries = data.filter(user => user.userID === userID)
   }
 
-  calculateAvgHoursAllTime() {
+  calculateAvgAllTime(activity) {
     const totalSleep = this.entries.reduce((acc, entry) => {
-      acc += entry.hoursSlept;
+      acc += entry[activity];
       return acc;
     }, 0);
     const avg = totalSleep / this.entries.length;
@@ -25,35 +25,15 @@ class SleepProfile {
     return datesInRange;
   }
 
-  findHoursSleptForWeek(endDate) {
+  findSleepInfoWeek(endDate, activity) {
     const datesInRange = this.findDateRange(endDate);
-    const sleeps = datesInRange.map(date => date.hoursSlept);
+    const sleeps = datesInRange.map(date => date[activity]);
     return sleeps;
   }
 
-  calculateSleepQualityAllTime() {
-    const totalSleepQuality = this.entries.reduce((acc, entry) => {
-      acc += entry.sleepQuality;
-      return acc;
-    }, 0);
-    const avg = totalSleepQuality / this.entries.length;
-    return Math.round(avg * 10) / 10;
-  }
-
-  findSleepQualityForWeek(endDate) {
-    const datesInRange = this.findDateRange(endDate);
-    const qualities = datesInRange.map(date => date.sleepQuality);
-    return qualities;
-  }
-
-  findHoursSlept(date) {
+  findSleepDay(date, activity) {
     const specificEntry = this.entries.find(entry => entry.date === date);
-    return specificEntry.hoursSlept;
-  }
-
-  findSleepQuality(date) {
-    const specificEntry = this.entries.find(entry => entry.date === date);
-    return specificEntry.sleepQuality;
+    return specificEntry[activity];
   }
 
   findLastEntry() {
