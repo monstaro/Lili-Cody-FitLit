@@ -27,7 +27,8 @@ const stairRecord = document.querySelector('#stair-record');
 const activeMinuteRecord = document.querySelector('#active-minute-record')
 // Generate user data
 
-let random = Math.floor(Math.random() * (50));
+let random = Math.floor(Math.random() * (50 - 1) + 1);
+console.log(random);
 const userRepo = new UserRepository(userData);
 const user = new User(userRepo.getUserData(random));
 const friends = user.friends.map(friendID => {
@@ -118,7 +119,19 @@ const displayIncreases = (activity) => {
     })
     return dates;
   })
-  return `${abrv[abrv.length - 1].join(' - ')}, ${abrv[abrv.length - 2].join(' - ')}, ${abrv[abrv.length - 3].join(' - ')}, and ${abrv.length - 3} other times`
+  switch (true) {
+    case (abrv.length > 2):
+      return `${abrv[abrv.length - 1].join(' - ')}, ${abrv[abrv.length - 2].join(' - ')}, ${abrv[abrv.length - 3].join(' - ')}, and ${abrv.length - 3} other times`;
+      break;
+    case (abrv.length > 1):
+      return `${abrv[abrv.length - 1].join(' - ')}, ${abrv[abrv.length - 2].join(' - ')}`;
+      break;
+    case (abrv.length === 1):
+      return `${abrv[abrv.length - 1].join(' - ')}`;
+      break;
+    default:
+      return `No 3+ day increases yet for ${activity}`;
+  }
 }
 stepTrends.innerText = displayIncreases('numSteps');
 stairTrends.innerText = displayIncreases('flightsOfStairs');
