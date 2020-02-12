@@ -12,8 +12,8 @@ const allTimeAvgSleep = document.getElementById('alltime-avg-sleep');
 const allTimeAvgHydration = document.getElementById('alltime-avg-hydration');
 const stepsToday = document.getElementById('today-steps');
 const compareStepsToday = document.getElementById('compare-steps');
-const compareMinsToday = document.getElementById('compare-mins-active')
-const compareFlightsToday = document.getElementById('compare-flights')
+const compareMinsToday = document.getElementById('compare-mins-active');
+const compareFlightsToday = document.getElementById('compare-flights');
 const activityToday = document.getElementById('today-activity');
 const stepTrends = document.getElementById('step-trends');
 const stairTrends = document.getElementById('stair-trends');
@@ -28,50 +28,47 @@ const activeMinuteRecord = document.querySelector('#active-minute-record');
 const emailField = document.querySelector('#email-field');
 const loginButton = document.querySelector('#login-button');
 const randomButton = document.querySelector('#random-button');
-const loginScreen = document.querySelector("#login-screen")
-const dashboard = document.querySelector("#dashboard")
-// Generate user data
+const loginScreen = document.querySelector("#login-screen");
+const dashboard = document.querySelector("#dashboard");
+const userRepo = new UserRepository(userData);
 
-
+let user;
+let friendNames;
+let friendActivities;
+let currentUser;
+let lastHydroDate;
+let lastSleepDate;
+let lastActivityDate
+let userSleep;
+let userActivity;
+let userHydration;
+let random = Math.floor(Math.random() * (50 - 1) + 1);
 
 
 //Login Area 
 const loginUser = () => {
   let emailEntry = emailField.value;
   let email = userRepo.data.find(user => {
-    return user.email === emailEntry
+    return user.email === emailEntry;
   })
   if (email) {
-    generateUser(email.id)
+    generateUser(email.id);
   } else {
-    alert ('this email does not exist')
+    alert ('this email does not exist');
   }
-}
-
-let user;
-let friendNames;
-let friendActivities;
-let lastHydroDate;
-let lastSleepDate;
-let lastActivityDate
-let currentUser;
-let userSleep;
-let userActivity;
-let userHydration;
+};
 
 const generateUser = (userID) => { 
   user = new User(userRepo.getUserData(userID));
-
   const friends = user.friends.map(friendID => {
     return friend = new User(userRepo.getUserData(friendID));
   });
   friendNames = friends.map(friend => {
     return friend.returnFirstName();
   });
-
   friendActivities = friends.map(friend => {
     return new ActivityProfile(friend, activityData);
-  })
+  });
   userHydration = new HydrationProfile(random, hydrationData);
   userSleep = new SleepProfile(random, sleepData);
   userActivity = new ActivityProfile(user, activityData);
@@ -80,11 +77,11 @@ const generateUser = (userID) => {
   lastActivityDate = userActivity.findLastEntry();
   currentUser = userRepo.data.find(user => {
     user.email === email;
-  })
+  });
   loadPage(user);
 }
 
-
+//Add event listener
 loginButton.addEventListener('click', loginUser);
 randomButton.addEventListener('click', () => {
   generateUser(random);
@@ -92,10 +89,6 @@ randomButton.addEventListener('click', () => {
 
 
 
-//
-
-const userRepo = new UserRepository(userData);
-let random = Math.floor(Math.random() * (50 - 1) + 1);
 
 
 
