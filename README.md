@@ -1,82 +1,20 @@
-# FitLit Starter Kit
+# FitLit - A Modern Approach to Fitness Tracking
+### By Lili Manrique and Cody Smith
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
 
-## Setup
+## Summary
+Fitlit is an application used to track and chart health-related data from its users. Included in this file is a dataset of 50 users, and datasets of various health categories (hydration, sleep, steps, etc.) that are associated with the user dataset by a unique ID number. That information is then used to display various statistics on the web page, such as a data rundown for today, all-time records, averages, and more. Users are also able to see where they rank against other users.  
 
-1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `open src/index.html` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-1. Make sure both members of your team are collaborators on the forked repo.
 
-## Testing
+## Setup and Download
+To pull this project into your local machine, run `git clone https://github.com/monstaro/Lili-Cody-FitLit.git` in your terminal. After the repo is cloned down, run `npm install` in your root directory. 
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
+## Instructions
+To use this app, either run `open index.html` from the repo's root directory in your terminal, or navigate to https://monstaro.github.io/Lili-Cody-FitLit/index.html to use the version deployed on the web. 
+From their, if you are a user, you may enter your e-mail address to see your information. Some sample e-mail addresses you can use to test this feature are `Dylan_Langworth65@hotmail.com` and `Eric_Aufderhar@yahoo.com`. You may also select the 'random profile' button and a random user will load. These are not real users, so there is no sensitive data at risk here. 
 
-## Linting Your Code
+There are some interactive charts on the page, which you can mouseover to see the numerical data for each day of the week.
+For now, 'today' on the site simply represents the most recent date in the dataset. Likewise, any weekly information is based off the last 7 days of the dataset. 
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+## Screenshots
 
-Your linter will look only at the JavaScript files you have within the `src` and the `test` directories.
-
-## Data Model
-
-**Users**
-
-```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
-```
-
-**Activity**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
-
-**Hydration**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
-
-**Sleep**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
