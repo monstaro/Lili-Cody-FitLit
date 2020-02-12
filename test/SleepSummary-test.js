@@ -1,15 +1,14 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const sampleUsers = require ('../data/sample-users.js');
 const sampleSleep = require ('../data/sample-sleep.js');
-const UserRepository = require ('../src/UserRepository.js');
 const SleepSummary = require ('../src/SleepSummary.js');
+
+let sleepSum;
 
 describe('SleepProfile', function() {
 
   beforeEach(() => {
-    userRepo = new UserRepository(sampleUsers);
     sleepSum = new SleepSummary(sampleSleep);
   });
 
@@ -43,10 +42,10 @@ describe('SleepProfile', function() {
 
   it('should be able to find the longest sleepr(s) for a given date', () => {
     expect(sleepSum.findLongestSleeper('2019/06/17')).to.deep.equal([  {
-        "userID": 5,
-        "date": "2019/06/17",
-        "hoursSlept": 10.5,
-        "sleepQuality": 3.7
-      }]);
+      "userID": 5,
+      "date": "2019/06/17",
+      "hoursSlept": 10.5,
+      "sleepQuality": 3.7
+    }]);
   });
 });

@@ -30,7 +30,7 @@ describe('SleepProfile', function() {
       "date": "2019/06/15",
       "hoursSlept": 5.4,
       "sleepQuality": 3
-    },{
+    }, {
       "userID": 4,
       "date": "2019/06/16",
       "hoursSlept": 8.3,

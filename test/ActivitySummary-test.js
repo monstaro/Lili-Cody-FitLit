@@ -1,14 +1,13 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const sampleUsers = require ('../data/sample-users.js');
 const sampleActivity = require ('../data/sample-activity.js');
-const UserRepository = require ('../src/UserRepository.js');
 const ActivitySummary = require ('../src/ActivitySummary.js');
+
+let activitySum;
 
 describe('ActivitySummary', function() {
   beforeEach(() => {
-    userRepo = new UserRepository(sampleUsers);
     activitySum = new ActivitySummary(sampleActivity);
   });
 
