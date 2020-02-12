@@ -20,7 +20,7 @@ describe('ActivitySummary', function() {
     expect(activitySum.data).to.deep.equal(sampleActivity);
   });
 
-  it('should be able to return an object of all sleep averages for a month', () => {
+  it('should be able to return an object of all activity averages for a month', () => {
     expect(activitySum.findMonthlyAvgs('06')).to.deep.equal({
       month: '06',
       avgSteps: 7980,
@@ -41,15 +41,15 @@ describe('ActivitySummary', function() {
     expect(activitySum.findWorstStepsMonth()).to.equal('06');
   });
 
-  it('should return the avg stairs climbed of all users on a specific date', () => {
-    expect(activitySum.findAllUsersAvg('2019/06/17', 'flightsOfStairs')).to.equal(15)
-  });
-
   it('should return the avg steps of all users on a specific date', () => {
     expect(activitySum.findAllUsersAvg('2019/06/17', 'numSteps')).to.equal(10781)
   });
 
   it('should return the avg mins active of all users on a specific date', () => {
     expect(activitySum.findAllUsersAvg('2019/06/17', 'minutesActive')).to.equal(111)
+  });
+
+  it('should return the avg stairs climbed of all users on a specific date', () => {
+    expect(activitySum.findAllUsersAvg('2019/06/17', 'flightsOfStairs')).to.equal(15)
   });
 });
