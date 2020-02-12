@@ -63,7 +63,6 @@ button:hover
 body
 {
 	background: linear-gradient(333deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-	background: rgb(34,193,195);
 	margin: 0;
 }
 header
@@ -196,7 +195,7 @@ header
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
 
- 
+
 @-webkit-keyframes scale-in-hor-center
 {
 	0%
@@ -227,6 +226,8 @@ header
 		webkit-transform: scaleX(1);
 	}
 }
+
+
 @media only screen and (max-width: 800px)
 {
 	body
