@@ -1,4 +1,5 @@
 class ActivitySummary {
+
   constructor(data) {
     this.data = data;
   }
@@ -63,10 +64,10 @@ class ActivitySummary {
     return worstMonth.month;
   }
 
-  findAllUsersStairClimbAvg(date) {
+  findAllUsersAvg(date, activity) {
     let dates = this.data.filter(a => a.date === date)
     return Math.round(dates.reduce((acc, cur) => {
-        acc += cur.flightsOfStairs
+        acc += cur[activity];
       return acc
     }, 0) / dates.length);
   }
