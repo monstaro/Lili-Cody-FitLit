@@ -14,13 +14,12 @@ class ActivitySummary {
       }, 0) / filteredMonthEntries.length
       return Math.round(average);
     };
-    const monthAvgs = filteredMonthEntries.reduce((acc, entry) => {
-      acc.month = month;
-      acc.avgSteps = avg('numSteps');
-      acc.avgMins = avg('minutesActive');
-      acc.avgStairs = avg('flightsOfStairs');
-      return acc;
-    }, {});
+    const monthAvgs = {
+      month,
+      avgSteps: avg('numSteps'),
+      avgMins: avg('minutesActive'),
+      avgStairs: avg('flightsOfStairs')
+    };
     return monthAvgs;
   }
 
@@ -66,7 +65,7 @@ class ActivitySummary {
   findAllUsersAvg(date, activity) {
     let dates = this.data.filter(a => a.date === date)
     return Math.round(dates.reduce((acc, cur) => {
-        acc += cur[activity];
+      acc += cur[activity];
       return acc;
     }, 0) / dates.length);
   }

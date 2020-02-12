@@ -24,9 +24,6 @@ const stairsBox = document.getElementById('stairs-box');
 const minsBox = document.getElementById('mins-box');
 const stepRecord = document.querySelector('#step-record');
 const stairRecord = document.querySelector('#stair-record');
-
-
-
 const activeMinuteRecord = document.querySelector('#active-minute-record')
 // Generate user data
 
@@ -58,13 +55,13 @@ strideSpan.innerText = user.strideLength;
 stepGoalSpan.innerText = user.dailyStepGoal;
 friendsSpan.innerText = friendNames.join(', ');
 avgStepSpan.innerText = userRepo.findAvgStepGoal();
-todaySleep.innerText = userSleep.findHoursSlept(lastSleepDate);
-todayQuality.innerText = userSleep.findSleepQuality(lastSleepDate);
+todaySleep.innerText = userSleep.findSleepDay(lastSleepDate, 'hoursSlept');
+todayQuality.innerText = userSleep.findSleepDay(lastSleepDate, 'sleepQuality');
 todayHydration.innerText = userHydration.findOzConsumed(lastHydroDate);
 stepsToday.innerText = userActivity.findActivity(lastActivityDate, 'numSteps');
 activityToday.innerText = userActivity.findActivity(lastActivityDate, 'minutesActive')
-allTimeAvgSleep.innerText = userSleep.calculateAvgHoursAllTime() + ' hrs - ' +
-userSleep.calculateSleepQualityAllTime() + '/5 quality';
+allTimeAvgSleep.innerText = userSleep.calculateAvgAllTime('hoursSlept') + ' hrs - ' +
+userSleep.calculateAvgAllTime('sleepQuality') + '/5 quality';
 allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
 milesToday.innerText = userActivity.findMilesWalked(lastActivityDate)
 compareStepsToday.innerText = userActivity.compareToAllUsers(lastActivityDate, 'numSteps');
@@ -174,13 +171,13 @@ var sleepChartData = new Chart(sleepChart, {
     datasets: [{
       label: 'hours slept',
       borderColor: 'rgb(255, 99, 132)',
-      data: userSleep.findHoursSleptForWeek(lastSleepDate),
+      data: userSleep.findSleepInfoWeek(lastSleepDate, 'hoursSlept'),
       yAxisID: 'hours-axis'
     },
     {
       label: 'sleep quality',
       borderColor: '#4facfe',
-      data: userSleep.findSleepQualityForWeek(lastSleepDate),
+      data: userSleep.findSleepInfoWeek(lastSleepDate, 'sleepQuality'),
       yAxisID: 'quality-axis'
     }]
   },
@@ -199,43 +196,25 @@ var sleepChartData = new Chart(sleepChart, {
     }
   }
 });
-// const userDetails = document.querySelector('.user-details')
-// infoButton.onclick = function () {
-//   userDetails.classList.toggle('hide')
-// }
 
-// console.log(userHydration.findOzForWeek(lastHydroDate, 'numOunces').map(entry => entry + 'oz'))
-
-let hydrationChart = document.getElementById('week-hydration').getContext('2d');
-var hydroChart = new Chart(hydrationChart, {
-  // The type of chart we want to create
+const hydrationChart = document.getElementById('week-hydration').getContext('2d');
+const hydroChart = new Chart(hydrationChart, {
   type: 'polarArea',
-
-  // The data for our dataset
   data: {
-    labels: userHydration.findOzForWeek(lastHydroDate, 'date').map(entry => entry.slice(5)),
+    labels: userHydration.findDateRange(lastHydroDate).map(entry => entry.date.slice(5)),
     datasets: [{
       label: 'Hydration',
       backgroundColor: ['rgb(255, 0, 0, 0.8)', 'rgb(255, 144, 0, 0.8)', 'rgb(255, 255, 0, 0.8)', 'rgb(17, 175, 0, 0.8)', 'rgb(0, 0, 255, 0.8)', 'rgb(153, 5, 183, 0.8)', 'rgb(0, 0, 0, 0.8)'],
       borderColor: 'rgb(0, 174, 255, 0.9)',
       hoverBackgroundColor: 'rgb(255, 255, 255, 0.3',
       data: userHydration.findOzForWeek(lastHydroDate, 'numOunces'),
-    }],
-  },
-
-  // Configuration options go here
-  options: {
-
+    }]
   }
 });
 
-console.log(userActivity.findDateRange(lastActivityDate))
-var activityMinsGraph = document.getElementById('week-activity-mins').getContext('2d');
-var chartMinsActive = new Chart(activityMinsGraph, {
-  // The type of chart we want to create
+const activityMinsGraph = document.getElementById('week-activity-mins').getContext('2d');
+const chartMinsActive = new Chart(activityMinsGraph, {
   type: 'line',
-
-  // The data for our dataset
   data: {
     labels: userActivity.findDateRange(lastActivityDate).map(entry => entry.date.slice(5)),
     datasets: [{
@@ -244,6 +223,5 @@ var chartMinsActive = new Chart(activityMinsGraph, {
       borderColor: 'rgb(255, 99, 132)',
       data: userActivity.findDataForWeek(lastActivityDate, 'minutesActive')
     }]
-  },
-  options: {}
+  }
 });
