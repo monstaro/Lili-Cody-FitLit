@@ -1,6 +1,5 @@
 body {
   margin: 0;
-
   background: rgb(34,193,195);
   background: linear-gradient(333deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
 }
@@ -172,3 +171,42 @@ header {
     opacity: 1;
   }
 }
+
+
+@media only screen and (max-width: 800px) {
+  body {
+    background: rgb(34,193,195);
+  }
+  header {
+    height: 200px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .user-details {
+    display: inline;
+    margin: auto;
+    padding-bottom: 30px;
+  }
+  .details-box {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+    .main-container {
+      width: 320px;
+      height: 600px;
+      margin: 25px auto;
+      display: grid;
+      grid-gap: 20px;
+      grid-template-columns: 320px;
+      grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-areas: "today"
+                           "hydration"
+                           "activity"
+                           "steps"
+                           "sleep"
+                           "trends"
+    }
+  }
