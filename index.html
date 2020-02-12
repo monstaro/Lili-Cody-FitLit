@@ -10,19 +10,19 @@
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Comfortaa:400,700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <section class="login-screen">
+    <section class="login-screen" id="login-screen">
       <header class="login-header">
         Welcome to FitLit!
       </header>
       <section class="login-field">
         <p>Already a user? Log in here:</p>
-        <input type="text" name="email" placeholder="youremail@email.com">
-        <button type="button" name="button">Log In</button>
+        <input type="text" name="email" placeholder="youremail@email.com" id='email-field'>
+        <button type="button" name="button" id="login-button">Log In</button>
         <p>Don't have a profile? Preview our application</p>
-        <button type="button" name="button">Random Profile</button>
+        <button type="button" name="button" id="random-button">Random Profile</button>
       </section>
     </section>
-    <section class="dashboard hidden">
+    <section class="dashboard hidden" id="dashboard">
       <header>
         <h1 class="fitlit-header">Welcome to Fitlit, <span id="user-name">Lauren Ipsom</span>.</h1>
         <div class="user-details">
@@ -38,7 +38,7 @@
       </header>
       <div class="main-container">
         <section class="today-info">
-          <h2 class="today-glance">Today At A Glance</h2>
+          <h2>Today At A Glance</h2>
           <p class="today"></p>Today you drank <span id="today-hydration"></span> oz.,
           were active for <span id="today-activity"></span> minutes,
           walked <span id="today-steps"></span> steps (<span id="today-miles"></span> miles),
@@ -46,23 +46,21 @@
         </p>
         </section>
         <section class="hydration">
-          <h1 class="box-title">Hydration</h1>
-          <p class="this-week">This Week in Ounces:</p>
+          <h1>Hydration</h1>
+          <p>This Week in Ounces:</p>
             <canvas id="week-hydration"></canvas>
             <p class="all-time-avg">All Time Average: <span id="alltime-avg-hydration"></span></p>
         </section>
-
         <section class="activity">
-          <h1 class="box-title">Activity</h1>
-          <p class="this-week">This Week in Active Minutes:</p>
+          <h1>Activity</h1>
+          <p>This Week in Active Minutes:</p>
            <canvas id="week-activity-mins"></canvas> </span>
            <p> Active Minute Record:  <span id="active-minute-record"> </span></p>
         </section>
-
         <section class="steps">
           <div class="step-info">
-            <h1 class="box-title">Steps</h1>
-            <p class="this-week">This Week in Step and Stair Count:</p>
+            <h1>Steps</h1>
+            <p>This Week in Step and Stair Count:</p>
           </div>
           <canvas id="step-stair-chart"></canvas>
           <p>Step Goal: <span id="step-goal"></span>
@@ -72,41 +70,39 @@
             Step Record: <span id="step-record"></span>
           </p>
         </section>
-
         <section class="sleep">
-          <h1 class="box-title">Sleep</h1>
-          <p class="this-week">This Week in Sleep Hours/Quality:</p>
+          <h1>Sleep</h1>
+          <p>This Week in Sleep Hours/Quality:</p>
           <canvas id="sleep-chart"></canvas>
           <p class="all-time-avg">All Time Average: <span id="alltime-avg-sleep"></span></p>
         </section>
-
         <section class="trends">
-          <h1 class="box-title">3+ Day Improvements</h1>
+          <h1>3+ Day Improvements</h1>
           <p>Your steps increased from: <span id="step-trends"></span></p>
           <p>Your stairs climbed increased from: <span id="stair-trends"></span></p>
           <p>Your minutes active increased from: <span id="mins-trends"></span></p>
         </section>
         <section class="scoreboard">
-          <h1 class="scoreboard-header">Scoreboard</h2>
-          <div class="sub-scoreboard">
-            <h2 class="scoreboard-header">Today's Rankings:</h2>
+          <h1>Scoreboard</h2>
+          <div>
+            <h2>Today's Rankings:</h2>
             <div class="comparisons">
               <p>Step Ranking: <span id="compare-steps"></span> Users!</p>
               <p>Active Mins Ranking: <span id="compare-mins-active"></span> Users!</p>
               <p>Stair Ranking: <span id="compare-flights"></span> Users!</p>
             </div>
           </div>
-          <div class="sub-scoreboard">
-            <h2 class="scoreboard-header">You vs Friends (Week):</h2>
-            <h2 class="scoreboard-header">Steps</h2>
+          <div>
+            <h2>You vs Friends (Week):</h2>
+            <h2>Steps</h2>
             <div id="step-box"></div>
           </div>
-          <div class="sub-scoreboard">
-            <h2 class="scoreboard-header">Stairs</h2>
+          <div>
+            <h2>Stairs</h2>
             <div id="stairs-box"></div>
           </div>
-          <div class="sub-scoreboard">
-            <h2 class="scoreboard-header">Minutes Active</h2>
+          <div>
+            <h2>Minutes Active</h2>
             <div id="mins-box"></div>
           </div>
         </section>

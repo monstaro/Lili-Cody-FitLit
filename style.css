@@ -1,199 +1,191 @@
-/* LOG IN SCREEN  */
-
-.login-screen {
-  height: 1vh;
+/* LOGIN SCREEN */
+.login-screen
+{
+	height: 1vh;
 }
-
-.login-field {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
+.login-field
+{
+	align-items: center;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	margin-top: 100px;
 }
-
 .login-header,
 .fitlit-header,
 .details-box,
-.login-screen p {
-  font-family: 'Comfortaa', cursive;
+.login-screen p
+{
+	font-family: 'Comfortaa', cursive;
 }
-
-.login-header {
-  font-size: 6em;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login-header
+{
+	align-items: center;
+	display: flex;
+	font-size: 6em;
+	height: 150px;
+	justify-content: center;
 }
-
-.login-screen p {
-  font-size: 2em;
+.login-screen p
+{
+	font-size: 2em;
 }
-
-input {
-  width: 300px;
+input
+{
+	width: 300px;
 }
-
-input, button {
-  padding: 5px;
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 1.5em;
-  font-family: 'Comfortaa', cursive;
+input, button
+{
+	font-family: 'Comfortaa', cursive;
+	font-size: 1.5em;
+	margin-bottom: 10px;
+	padding: 5px;
+	text-align: center;
 }
-
-button {
-  width: 250px;
-  padding: 5px;
-  border-radius: 10px;
-  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+button
+{
+	background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+	border-radius: 10px;
+	padding: 5px;
+	width: 250px;
 }
-
-button:hover {
-  background-image: linear-gradient(to left, #4facfe 0%, #00f2fe 100%);
+button:hover
+{
+	background-image: linear-gradient(to left, #4facfe 0%, #00f2fe 100%);
 }
-
 /* MAIN DASH */
-
 /* LAYOUT */
 
-.hidden {
-  display: none;
+.hidden
+{
+	display: none;
 }
-
-body {
-  margin: 0;
-  background: rgb(34,193,195);
-  background: linear-gradient(333deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+body
+{
+	background: linear-gradient(333deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+	margin: 0;
 }
-
-
-header {
-  display: flex;
-  justify-content: space-between;
-  color: white;
-  height: 100px;
-  width: 100vw;
-  background-color: rgba(2, 9, 45, 0.4);
-  -webkit-animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+header
+{
+	animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	background-color: rgba(2, 9, 45, 0.4);
+	color: white;
+	display: flex;
+	height: 100px;
+	justify-content: space-between;
+	webkit-animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	width: 100vw;
 }
-
-.fitlit-header {
-  font-size: 2em;
-  margin-left: 30px;
-  padding-top: 25px;
+.fitlit-header
+{
+	font-size: 2em;
+	margin-left: 30px;
+	padding-top: 25px;
 }
-
-.details-box {
-  font-size: 75%;
+.details-box
+{
+	font-size: 75%;
 }
-
-.info-btn {
-  /* background: white;
-  border-radius: 360px; */
-  /* color: rgb(0,0,0,0.0); */
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px;
-  margin-top: 25px;
-  /* padding: 10px; */
-
+.info-btn
+{
+	border-radius: 25px;
+	font-size: 18px;
+	height: 50px;
+	line-height: 1.33;
+	margin-top: 25px;
+	padding: 10px 16px;
+	width: 50px;
 }
-
-.user-details {
-  display: flex;
-  width: 40%;
-  justify-content: space-around;
+.user-details
+{
+	display: flex;
+	justify-content: space-around;
+	width: 40%;
 }
-
-.hide {
-  visibility: hidden;
+.hide
+{
+	visibility: hidden;
 }
-
-.main-container {
-  width: 1200px;
-  height: 1200px;
-  margin: 25px auto;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: 460px 460px 220px;
-  grid-template-rows: 0.5fr 2fr 2fr 1fr;
-  grid-template-areas: "today today scoreboard"
-                       "hydration activity scoreboard"
-                       "steps sleep scoreboard"
-                       "trends trends scoreboard";
+.main-container
+{
+	display: grid;
+	grid-gap: 20px;
+	grid-template-areas: "today today scoreboard"
+ "hydration activity scoreboard"
+ "steps sleep scoreboard"
+ "trends trends scoreboard";
+	grid-template-columns: 460px 460px 220px;
+	grid-template-rows: 0.5fr 2fr 2fr 1fr;
+	height: 1200px;
+	margin: 25px auto;
+	width: 1200px;
 }
-
-.hydration, .activity, .steps, .sleep, .trends, .scoreboard, .today-info {
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 2px 4px 7px 0px #4b4b4f;
-  font-family: 'Bebas Neue', cursive;
-  font-weight: 400;
-	-webkit-animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+.hydration, .activity, .steps, .sleep, .trends, .scoreboard, .today-info
+{
+	animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	border-radius: 10px;
+	box-shadow: 2px 4px 7px 0px #4b4b4f;
+	font-family: 'Bebas Neue', cursive;
+	font-weight: 400;
+	padding: 15px;
+	webkit-animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
-
-.today-info {
-  grid-area: today;
-  background-color: rgba(2, 9, 45, 0.3);
+.today-info
+{
+	background-color: rgba(2, 9, 45, 0.3);
+	grid-area: today;
 }
-
-.today-info span, .you, .comparisons span {
-  color: #fda085;
+.today-info span, .you, .comparisons span
+{
+	color: #fda085;
 }
-
-.hydration {
-  grid-area: hydration;
-  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+.hydration
+{
+	background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+	grid-area: hydration;
 }
-
-.activity {
-  grid-area: activity;
-  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+.activity
+{
+	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+	grid-area: activity;
 }
-
-.steps {
-  grid-area: steps;
-  background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+.steps
+{
+	background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+	grid-area: steps;
 }
-
-.step-num {
-  color: #f00;
+.step-num
+{
+	color: #f00;
 }
-
-.sleep {
-  grid-area: sleep;
-  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+.sleep
+{
+	background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+	grid-area: sleep;
 }
-
-.trends {
-  grid-area: trends;
-  background-color: rgba(2, 9, 45, 0.3);
+.trends
+{
+	background-color: rgba(2, 9, 45, 0.3);
+	grid-area: trends;
 }
-
-.scoreboard {
-  grid-area: scoreboard;
-  background-color: rgba(2, 9, 45, 0.3);
-  overflow: scroll;
+.scoreboard
+{
+	background-color: rgba(2, 9, 45, 0.3);
+	grid-area: scoreboard;
+	overflow: scroll;
 }
-
-.top-row p {
-  margin: 0;
+.top-row p
+{
+	margin: 0;
 }
-
-#week-hydration {
-  border-radius: 10px;
-  background: rgb(252, 239, 239, 0.4);
+#week-hydration
+{
+	background: rgb(252, 239, 239, 0.4);
+	border-radius: 10px;
 }
-
-#step-stair-chart {
-  width: 500px;
+#step-stair-chart
+{
+	width: 500px;
 }
 
 /* ----------------------------------------------
@@ -203,72 +195,79 @@ header {
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
 
-/**
- * ----------------------------------------
- * animation scale-in-hor-center
- * ----------------------------------------
- */
 
- @-webkit-keyframes scale-in-hor-center {
-  0% {
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
-    opacity: 1;
-  }
+@-webkit-keyframes scale-in-hor-center
+{
+	0%
+	{
+		opacity: 1;
+		transform: scaleX(0);
+		webkit-transform: scaleX(0);
+	}
+	100%
+	{
+		opacity: 1;
+		transform: scaleX(1);
+		webkit-transform: scaleX(1);
+	}
 }
-@keyframes scale-in-hor-center {
-  0% {
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
-    opacity: 1;
-  }
+@keyframes scale-in-hor-center
+{
+	0%
+	{
+		opacity: 1;
+		transform: scaleX(0);
+		webkit-transform: scaleX(0);
+	}
+	100%
+	{
+		opacity: 1;
+		transform: scaleX(1);
+		webkit-transform: scaleX(1);
+	}
 }
 
 
-@media only screen and (max-width: 800px) {
-  body {
-    background: rgb(34,193,195);
-  }
-  header {
-    height: 200px;
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .user-details {
-    display: inline;
-    margin: auto;
-    padding-bottom: 30px;
-  }
-  .details-box {
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-    .main-container {
-      width: 320px;
-      height: 600px;
-      margin: 25px auto;
-      display: grid;
-      grid-gap: 20px;
-      grid-template-columns: 320px;
-      grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-areas: "today"
-                           "hydration"
-                           "activity"
-                           "steps"
-                           "sleep"
-                           "trends"
-    }
-  }
+@media only screen and (max-width: 800px)
+{
+	body
+	{
+		background: rgb(34,193,195);
+	}
+	header
+	{
+		display: flex;
+		flex-direction: column;
+		height: 200px;
+		justify-content: center;
+		width: auto;
+	}
+	.user-details
+	{
+		display: inline;
+		margin: auto;
+		padding-bottom: 30px;
+	}
+	.details-box
+	{
+		display: inline-flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+	}
+	.main-container
+	{
+		display: grid;
+		grid-gap: 20px;
+		grid-template-areas: "today"
+	 "hydration"
+	 "activity"
+	 "steps"
+	 "sleep"
+	 "trends";
+		grid-template-columns: 320px;
+		grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+		height: 600px;
+		margin: 25px auto;
+		width: 320px;
+	}
+}
