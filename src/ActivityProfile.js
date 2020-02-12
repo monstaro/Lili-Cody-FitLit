@@ -2,9 +2,10 @@ class ActivityProfile {
   constructor(user, data) {
     this.user = user;
     this.data = data;
-    this.entries = data.filter(user => user.userID === this.user.id);
+    this.entries = this.data.filter(user => user.userID === this.user.id);
     this.friends = user.friends;
   }
+
   findLastEntry() {
     return this.entries[this.entries.length - 1].date;
   }
@@ -15,6 +16,7 @@ class ActivityProfile {
     let numMiles = totalFt / 5280;
     return Math.round((numMiles + Number.EPSILON) * 100) / 100;
   }
+
   findActivity(date, activity) {
     return this.entries.find(entry => entry.date === date)[activity];
   }
@@ -37,10 +39,10 @@ class ActivityProfile {
     return datesInRange.map(entry => entry[activity]);
   }
 
-  findAvgMinActiveWeek(endDate) {
+  findAvgForWeek(endDate, activity) {
     const datesInRange = this.findDateRange(endDate);
     return Math.round(datesInRange.reduce((acc, day) => {
-      acc += day.minutesActive;
+      acc += day[activity];
       return acc;
     }, 0) / datesInRange.length)
   }
@@ -84,7 +86,7 @@ class ActivityProfile {
     }, 0);
     return total;
   }
-  
+
   compareToAllUsers(date, activity) {
     let allUserData = this.data.filter(entry => {
       return entry.date === date;
