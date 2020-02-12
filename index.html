@@ -10,19 +10,19 @@
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Comfortaa:400,700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <section class="login-screen">
+    <section class="login-screen" id="login-screen">
       <header class="login-header">
         Welcome to FitLit!
       </header>
       <section class="login-field">
         <p>Already a user? Log in here:</p>
-        <input type="text" name="email" placeholder="youremail@email.com">
-        <button type="button" name="button">Log In</button>
+        <input type="text" name="email" placeholder="youremail@email.com" id='email-field'>
+        <button type="button" name="button" id="login-button">Log In</button>
         <p>Don't have a profile? Preview our application</p>
-        <button type="button" name="button">Random Profile</button>
+        <button type="button" name="button" id="random-button">Random Profile</button>
       </section>
     </section>
-    <section class="dashboard hidden">
+    <section class="dashboard hidden" id="dashboard">
       <header>
         <h1 class="fitlit-header">Welcome to Fitlit, <span id="user-name">Lauren Ipsom</span>.</h1>
         <div class="user-details">
