@@ -7,10 +7,11 @@ const UserRepository = require ('../src/UserRepository.js');
 const SleepSummary = require ('../src/SleepSummary.js');
 
 describe('SleepProfile', function() {
+
   beforeEach(() => {
     userRepo = new UserRepository(sampleUsers);
     sleepSum = new SleepSummary(sampleSleep);
-  })
+  });
 
   it('should be a function', () => {
     expect(SleepSummary).to.be.a('function');
@@ -20,8 +21,12 @@ describe('SleepProfile', function() {
     expect(sleepSum.data).to.deep.equal(sampleSleep);
   });
 
+  it('should be able to find the avg sleep hours for all users', () => {
+    expect(sleepSum.findAvgSleep('hoursSlept')).to.equal(7.1);
+  });
+
   it('should be able to find the avg sleep quality for all users', () => {
-    expect(sleepSum.findAvgSleepQuality()).to.equal(3.4);
+    expect(sleepSum.findAvgSleep('sleepQuality')).to.equal(3.4);
   });
 
   it('should be able to return an array of entries for a week given an end date', () => {

@@ -44,15 +44,11 @@ describe('SleepProfile', function() {
   });
 
   it('should be able to calculate average hours of sleep for all time', () => {
-    expect(sleep.calculateAvgHoursAllTime()).to.equal(6.5);
+    expect(sleep.calculateAvgAllTime('hoursSlept')).to.equal(6.5);
   });
 
-  it('should be able to return an array of hours slept for a week', () => {
-    expect(sleep.findHoursSleptForWeek('2019/06/17')).to.deep.equal([5.4, 8.3, 5.7]);
-  });
-
-  it('should be able to calculate average sleep quality for all time', () => {
-    expect(sleep.calculateSleepQualityAllTime()).to.equal(2.9);
+  it('should be able to calculate average quality of sleep for all time', () => {
+    expect(sleep.calculateAvgAllTime('sleepQuality')).to.equal(2.9);
   });
 
   it('should be able to return an array of entries for a week given an end date', () => {
@@ -63,16 +59,20 @@ describe('SleepProfile', function() {
     ]);
   });
 
+  it('should be able to return an array of hours slept for a week', () => {
+    expect(sleep.findSleepInfoWeek('2019/06/17', 'hoursSlept')).to.deep.equal([5.4, 8.3, 5.7]);
+  });
+
   it('should be able to return an array of sleep quality for a week', () => {
-    expect(sleep.findSleepQualityForWeek('2019/06/17')).to.deep.equal([3, 4.5, 1.1]);
+    expect(sleep.findSleepInfoWeek('2019/06/17', 'sleepQuality')).to.deep.equal([3, 4.5, 1.1]);
   });
 
   it('should be able to find hours slept for a given night', () => {
-    expect(sleep.findHoursSlept('2019/06/17')).to.equal(5.7);
+    expect(sleep.findSleepDay('2019/06/17', 'hoursSlept')).to.equal(5.7);
   });
 
   it('should be able to find sleep quality for a given night', () => {
-    expect(sleep.findSleepQuality('2019/06/17')).to.equal(1.1);
+    expect(sleep.findSleepDay('2019/06/17', 'sleepQuality')).to.equal(1.1);
   });
 
   it('should be able to return the latest entry', () => {

@@ -1,5 +1,4 @@
 class ActivitySummary {
-
   constructor(data) {
     this.data = data;
   }
