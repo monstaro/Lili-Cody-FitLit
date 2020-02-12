@@ -87,11 +87,6 @@ randomButton.addEventListener('click', () => {
   generateUser(random);
 });
 
-
-
-
-
-
 //Populate DOM text
 
 const loadPage = (user) => {
@@ -112,14 +107,13 @@ const loadPage = (user) => {
   allTimeAvgSleep.innerText = userSleep.calculateAvgAllTime('hoursSlept') + ' hrs - ' +
   userSleep.calculateAvgAllTime('sleepQuality') + '/5 quality';
   allTimeAvgHydration.innerText = userHydration.calculateAllTimeOzAvg() + ' oz.';
-  milesToday.innerText = userActivity.findMilesWalked(lastActivityDate)
+  milesToday.innerText = userActivity.findMilesWalked(lastActivityDate);
   compareStepsToday.innerText = userActivity.compareToAllUsers(lastActivityDate, 'numSteps');
   compareMinsToday.innerText = userActivity.compareToAllUsers(lastActivityDate, 'minutesActive');
   compareFlightsToday.innerText = userActivity.compareToAllUsers(lastActivityDate, 'flightsOfStairs');
-  activeMinuteRecord.innerText = userActivity.findRecord('minutesActive')
-  stepRecord.innerText = userActivity.findRecord('numSteps')
-  stairRecord.innerText = userActivity.findRecord('flightsOfStairs')
-  
+  activeMinuteRecord.innerText = userActivity.findRecord('minutesActive');
+  stepRecord.innerText = userActivity.findRecord('numSteps');
+  stairRecord.innerText = userActivity.findRecord('flightsOfStairs');
   
   //Generate scoreboard data and add to DOM
   const yourTotalSteps = {
@@ -128,6 +122,7 @@ const loadPage = (user) => {
     totalStairs: userActivity.showTotalForWeek('flightsOfStairs', lastActivityDate),
     totalMins: userActivity.showTotalForWeek('minutesActive', lastActivityDate)
   }
+
   const friendTotalSteps = friendActivities.map(act => {
     return {
       name: act.user.returnFirstName(),
@@ -136,6 +131,7 @@ const loadPage = (user) => {
       totalMins: act.showTotalForWeek('minutesActive', lastActivityDate)
     }
   });
+
   const youAndFriends = [yourTotalSteps, ...friendTotalSteps];
   const sortHighToLow = (activity) => {
     const sorted = [...youAndFriends].sort((a, b) => {
@@ -143,6 +139,7 @@ const loadPage = (user) => {
     })
     return sorted;
   }
+
   const highestStepper = sortHighToLow('totalSteps');
   const highestStairClimber = sortHighToLow('totalStairs');
   const mostActive = sortHighToLow('totalMins');
@@ -157,39 +154,32 @@ const loadPage = (user) => {
   stairsBox.innerHTML = friendTrendStatements(highestStairClimber, 'totalStairs').join('');
   minsBox.innerHTML = friendTrendStatements(mostActive, 'totalMins').join('');
   
-  
   // Calculate and display 3+ day trends
   const displayIncreases = (activity) => {
     const increases = userActivity.findThreeDayTrends(activity);
     const abrv = increases.map(inc => {
       const dates = inc.map(date => {
         return date.slice(5);
-      })
+      });
       return dates;
-    })
+    });
     switch (true) {
-      case (abrv.length > 2):
-        return `${abrv[abrv.length - 1].join(' - ')}, ${abrv[abrv.length - 2].join(' - ')}, ${abrv[abrv.length - 3].join(' - ')}, and ${abrv.length - 3} other times`;
-        break;
-      case (abrv.length > 1):
-        return `${abrv[abrv.length - 1].join(' - ')}, ${abrv[abrv.length - 2].join(' - ')}`;
-        break;
-      case (abrv.length === 1):
-        return `${abrv[abrv.length - 1].join(' - ')}`;
-        break;
-      default:
-        return `No 3+ day increases yet for ${activity}`;
+    case (abrv.length > 2):
+      return `${abrv[abrv.length - 1].join(' - ')}, ${abrv[abrv.length - 2].join(' - ')}, ${abrv[abrv.length - 3].join(' - ')}, and ${abrv.length - 3} other times`;
+      break;
+    case (abrv.length > 1):
+      return `${abrv[abrv.length - 1].join(' - ')}, ${abrv[abrv.length - 2].join(' - ')}`;
+      break;
+    case (abrv.length === 1):
+      return `${abrv[abrv.length - 1].join(' - ')}`;
+      break;
+    default:
+      return `No 3+ day increases yet for ${activity}`;
     }
   }
   stepTrends.innerText = displayIncreases('numSteps');
   stairTrends.innerText = displayIncreases('flightsOfStairs');
   minsTrends.innerText = displayIncreases('minutesActive');
-  
-  
-  
-  
-  
-  
   
   // Charts
   const stepStairChart = document.getElementById('step-stair-chart').getContext('2d');
@@ -292,6 +282,4 @@ const loadPage = (user) => {
       }]
     }
   });
-  
-
 }
