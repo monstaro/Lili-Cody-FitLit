@@ -59,7 +59,30 @@ let userSleep;
 let userActivity;
 let userHydration;
 
+const generateUser = (userID) => { 
+  user = new User(userRepo.getUserData(userID));
 
+  const friends = user.friends.map(friendID => {
+    return friend = new User(userRepo.getUserData(friendID));
+  });
+  friendNames = friends.map(friend => {
+    return friend.returnFirstName();
+  });
+
+  friendActivities = friends.map(friend => {
+    return new ActivityProfile(friend, activityData);
+  })
+  userHydration = new HydrationProfile(random, hydrationData);
+  userSleep = new SleepProfile(random, sleepData);
+  userActivity = new ActivityProfile(user, activityData);
+  lastHydroDate = userHydration.findLastEntry();
+  lastSleepDate = userSleep.findLastEntry();
+  lastActivityDate = userActivity.findLastEntry();
+  currentUser = userRepo.data.find(user => {
+    user.email === email;
+  })
+  loadPage(user);
+}
 
 
 loginButton.addEventListener('click', loginUser);
