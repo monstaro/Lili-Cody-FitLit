@@ -6,22 +6,23 @@ class ActivityProfile {
     this.friends = user.friends;
   }
   findLastEntry() {
-    return this.entries[this.entries.length - 1].date
+    return this.entries[this.entries.length - 1].date;
   }
+
   findMilesWalked(date) {
     let walkDay = this.entries.find(entry => entry.date === date);
     let totalFt = this.user.strideLength * walkDay.numSteps;
     let numMiles = totalFt / 5280;
-    return Math.round((numMiles + Number.EPSILON) * 100) / 100
+    return Math.round((numMiles + Number.EPSILON) * 100) / 100;
   }
   findActivity(date, activity) {
-    return this.entries.find(entry => entry.date === date)[activity]
+    return this.entries.find(entry => entry.date === date)[activity];
   }
 
   findDateRange(endDate) {
     const lastDate = new Date(endDate);
     const subtractWeek = () => {
-      return new Date(lastDate.getTime() - (7 * 24 * 60 * 60 * 1000))
+      return new Date(lastDate.getTime() - (7 * 24 * 60 * 60 * 1000));
     }
     const firstDate = subtractWeek();
     const datesInRange = this.entries.filter(entry => {
@@ -39,22 +40,22 @@ class ActivityProfile {
   findAvgMinActiveWeek(endDate) {
     const datesInRange = this.findDateRange(endDate);
     return Math.round(datesInRange.reduce((acc, day) => {
-      acc += day.minutesActive
-      return acc
+      acc += day.minutesActive;
+      return acc;
     }, 0) / datesInRange.length)
   }
 
   findIfStepGoalMet(date) {
-    return this.findActivity(date, 'numSteps') >= this.user.dailyStepGoal ? true : false
+    return this.findActivity(date, 'numSteps') >= this.user.dailyStepGoal ? true : false;
   }
 
   findDaysGoalExceeded() {
-    return this.entries.filter(entry => entry.numSteps > this.user.dailyStepGoal).map(goodDay => goodDay.date)
+    return this.entries.filter(entry => entry.numSteps > this.user.dailyStepGoal).map(goodDay => goodDay.date);
   }
 
   findRecord(activity) {
-    let activityRecord = this.entries.sort((a, b) => b[activity] - a[activity])
-    return `${activityRecord[0][activity]} on ${activityRecord[0].date.slice(5)}`
+    let activityRecord = this.entries.sort((a, b) => b[activity] - a[activity]);
+    return `${activityRecord[0][activity]} on ${activityRecord[0].date.slice(5)}`;
   }
 
   findThreeDayTrends(activity) {
@@ -83,16 +84,17 @@ class ActivityProfile {
     }, 0);
     return total;
   }
+  
   compareToAllUsers(date, activity) {
     let allUserData = this.data.filter(entry => {
-      return entry.date === date
+      return entry.date === date;
     }).reduce((acc, cur) => {
       acc.push(cur[activity])
-      return acc
-    }, []).sort((a, b) => b - a)
-    let userDataIndex = allUserData.indexOf(this.findActivity(date, activity))
-    let totalUsers = allUserData.length
-    return `${userDataIndex + 1} / ${totalUsers}`
+      return acc;
+    }, []).sort((a, b) => b - a);
+    let userDataIndex = allUserData.indexOf(this.findActivity(date, activity));
+    let totalUsers = allUserData.length;
+    return `${userDataIndex + 1} / ${totalUsers}`;
   }
 }
 
